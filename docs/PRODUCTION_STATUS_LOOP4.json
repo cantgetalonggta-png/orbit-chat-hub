@@ -1,0 +1,20 @@
+{
+  "loop": 4,
+  "ts": "2026-11-17T22:00:33Z",
+  "extract_1P6x": {
+    "folder": "1P6xBOj5SIeT2MhYQg9UWgopiVO6QHcNR",
+    "shards": 16,
+    "files": 378825,
+    "path": "/workspace/work/extracted_shards_1P6x",
+    "identity": "ai.perplexity.app.android (arsc) + mixed extras (grokbot/flutter)"
+  },
+  "hub": {
+    "ok": true,
+    "url": "http://127.0.0.1:8787",
+    "stress_parallel_200": "200/200"
+  },
+  "prior_re_preserved": true,
+  "verbatim_constraint": "add-only; no deletion of existing project assets",
+  "vercel": "403 create project remains physical limit",
+  "github": "https://github.com/cantgetalonggta-png/orbit-chat-hub"
+}

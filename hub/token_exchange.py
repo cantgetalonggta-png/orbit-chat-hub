@@ -170,7 +170,7 @@ ROUTES = [
     "/livekit/token", "/livekit/token/dry-run",
     "/debug/state", "/debug/session_root",
     "/create_session/sim", "/livekit/agent/sim", "/livekit/dispatch/sim", "/livekit/voice/map",
-    "/sandbox/agent/sim", "/agents/registry", "/api/grpc_catalog", "/api/clients", "/stress/ping", "/app", "/app/index.html",
+    "/sandbox/agent/sim", "/agents/registry", "/api/grpc_catalog", "/api/clients", "/extract/1p6x", "/stress/ping", "/app", "/app/index.html",
 ]
 
 
@@ -439,6 +439,32 @@ class Handler(BaseHTTPRequestHandler):
                     "AgentSandbox.MintPreviewToken (optional not_sandbox)",
                     "GrokVoiceService / Voice.* runtime",
                 ],
+            })
+
+        
+        if path == "/extract/1p6x":
+            return self._json(200, {
+                "folder_id": "1P6xBOj5SIeT2MhYQg9UWgopiVO6QHcNR",
+                "raw": "/workspace/artifacts/project/drive_ingest/folder_1P6xBOj5SIeT2MhYQg9UWgopiVO6QHcNR/raw",
+                "extracted": "/workspace/work/extracted_shards_1P6x",
+                "shards_ok": 16,
+                "files_extracted": 378825,
+                "identity": {
+                    "primary_arsc_package": "ai.perplexity.app.android",
+                    "note": "Smali shards are heavily obfuscated; 15-extras contains grokbot linux port + x/grok bots + flutter assets",
+                    "string_hits": {
+                        "perplexity": 3897,
+                        "Firebase": 3024,
+                        "oauth": 203,
+                        "Cognito": 26,
+                        "x.ai": 44,
+                        "grok.com": 3,
+                        "background_agent": 2,
+                        "CreateToken/Livekit/AgentSandbox": 0
+                    }
+                },
+                "extras_dirs": ["www","assets","aur","scripts","x/grok","ai-presets",".github"],
+                "status": "EXTRACT_COMPLETE",
             })
 
         if path == "/livekit/voice/map":

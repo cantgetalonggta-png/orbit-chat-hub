@@ -1,0 +1,220 @@
+{
+  "perplexity": {
+    "count": 3897,
+    "samples": [
+      "11-smali/a0m.smali",
+      "11-smali/a1j.smali",
+      "11-smali/a1k.smali",
+      "11-smali/a1p.smali",
+      "11-smali/a26.smali",
+      "11-smali/a49.smali",
+      "11-smali/a4j.smali",
+      "11-smali/a4k.smali",
+      "11-smali/a5e.smali",
+      "11-smali/a5j.smali",
+      "11-smali/a5n.smali",
+      "11-smali/a61.smali",
+      "11-smali/a6h.smali",
+      "11-smali/a6k.smali",
+      "11-smali/a6q.smali",
+      "11-smali/a74.smali",
+      "11-smali/a7e.smali",
+      "11-smali/a7i.smali",
+      "11-smali/a8k.smali",
+      "11-smali/a9k.smali",
+      "11-smali/a9q.smali",
+      "11-smali/aa9.smali",
+      "11-smali/aaj.smali",
+      "11-smali/ab.smali",
+      "11-smali/adh.smali",
+      "11-smali/adk.smali",
+      "11-smali/aej.smali",
+      "11-smali/aeo.smali",
+      "11-smali/af9.smali",
+      "11-smali/afk.smali"
+    ]
+  },
+  "livekit": {
+    "count": 0,
+    "samples": []
+  },
+  "LiveKit": {
+    "count": 0,
+    "samples": []
+  },
+  "CreateToken": {
+    "count": 0,
+    "samples": []
+  },
+  "session_cookie": {
+    "count": 0,
+    "samples": []
+  },
+  "x.ai": {
+    "count": 44,
+    "samples": [
+      "10-smali/MX0.smali",
+      "10-smali/com/google/android/gms/location/LocationRequest.smali",
+      "10-smali/tv.smali",
+      "8-smali/com/braze/ui/inappmessage/utils/InAppMessageWebViewClient.smali",
+      "8-smali/com/braze/configuration/BrazeConfigurationProvider.smali",
+      "15-extras/assets/flutter_assets/assets/three_d_viewer/spark.module.min.js",
+      "15-extras/ai-presets/AIAnimeConfig.json",
+      "15-extras/ai-presets/AICartoonsConfig.json",
+      "4-smali/com/google/android/gms/location/LocationRequest.smali",
+      "4-smali/com/google/android/gms/internal/location/zzba.smali",
+      "11-smali/gl5.smali",
+      "2-smali/io/ktor/http/MimesKt$mimes$2.smali",
+      "2-smali/com/google/thirdparty/publicsuffix/PublicSuffixPatterns.smali",
+      "2-smali/com/google/android/gms/location/LocationRequest.smali",
+      "2-smali/com/google/android/gms/internal/location/zzba.smali",
+      "14-smali/org/apache/tika/pipes/PipesConfig.smali",
+      "14-smali/org/apache/tika/pipes/PipesParser.smali",
+      "14-smali/org/apache/tika/pipes/pipesiterator/PipesIterator.smali",
+      "7-smali/androidx/navigation/compose/NavHostKt$$ExternalSyntheticLambda5.smali",
+      "7-smali/androidx/navigation/compose/NavHostKt.smali",
+      "7-smali/androidx/compose/foundation/lazy/LazyListMeasuredItem.smali",
+      "7-smali/androidx/compose/foundation/lazy/staggeredgrid/LazyStaggeredGridMeasuredItem.smali",
+      "7-smali/androidx/compose/foundation/lazy/grid/LazyGridMeasuredItem.smali",
+      "7-smali/androidx/compose/foundation/layout/FlowMeasurePolicy.smali",
+      "7-smali/androidx/compose/foundation/layout/ContextualFlowLayoutKt$ContextualFlowRow$measurePolicy$1.",
+      "7-smali/androidx/compose/foundation/layout/ContextualFlowLayoutKt$ContextualFlowColumn$measurePolicy",
+      "7-smali/androidx/compose/foundation/layout/FlowLineInfo.smali",
+      "7-smali/com/google/thirdparty/publicsuffix/PublicSuffixPatterns.smali",
+      "7-smali/com/google/android/gms/location/LocationRequest.smali",
+      "7-smali/com/google/android/gms/internal/location/zzba.smali"
+    ]
+  },
+  "grok.com": {
+    "count": 3,
+    "samples": [
+      "15-extras/aur/grokbot-linux-port-bin/PKGBUILD",
+      "15-extras/aur/grokbot-linux-port/PKGBUILD",
+      "15-extras/scripts/build-deb.sh"
+    ]
+  },
+  "DataGateway": {
+    "count": 0,
+    "samples": []
+  },
+  "background_agent": {
+    "count": 2,
+    "samples": [
+      "11-smali/uln.smali",
+      "1-smali/uln.smali"
+    ]
+  },
+  "AgentSandbox": {
+    "count": 0,
+    "samples": []
+  },
+  "com.xai": {
+    "count": 0,
+    "samples": []
+  },
+  "ai.x.grok": {
+    "count": 0,
+    "samples": []
+  },
+  "Firebase": {
+    "count": 3024,
+    "samples": [
+      "10-smali/AB0.smali",
+      "10-smali/BB0.smali",
+      "10-smali/Bg0.smali",
+      "10-smali/DB0.smali",
+      "10-smali/EB0.smali",
+      "10-smali/F7$c.smali",
+      "10-smali/F7$d.smali",
+      "10-smali/F7.smali",
+      "10-smali/FB0.smali",
+      "10-smali/GB0.smali",
+      "10-smali/HB0.smali",
+      "10-smali/IB0.smali",
+      "10-smali/JB0.smali",
+      "10-smali/KB0.smali",
+      "10-smali/LB0.smali",
+      "10-smali/MB0.smali",
+      "10-smali/N7.smali",
+      "10-smali/Q7.smali",
+      "10-smali/SB0.smali",
+      "10-smali/ST.smali",
+      "10-smali/Sv.smali",
+      "10-smali/TB0.smali",
+      "10-smali/UB0.smali",
+      "10-smali/VB0.smali",
+      "10-smali/WB0.smali",
+      "10-smali/XB0.smali",
+      "10-smali/YB0.smali",
+      "10-smali/YT.smali",
+      "10-smali/bo/app/e1.smali",
+      "10-smali/bo/app/e1$f.smali"
+    ]
+  },
+  "Cognito": {
+    "count": 26,
+    "samples": [
+      "8-smali/com/amazonaws/auth/AWSAbstractCognitoDeveloperIdentityProvider.smali",
+      "8-smali/com/amazonaws/auth/CognitoCachingCredentialsProvider$1.smali",
+      "8-smali/com/amazonaws/auth/AWSCognitoIdentityProvider.smali",
+      "8-smali/com/amazonaws/auth/AWSAbstractCognitoIdentityProvider.smali",
+      "8-smali/com/amazonaws/auth/CognitoCachingCredentialsProvider.smali",
+      "8-smali/com/amazonaws/auth/CognitoCredentialsProvider.smali",
+      "8-smali/com/amazonaws/auth/AWSBasicCognitoIdentityProvider.smali",
+      "8-smali/com/amazonaws/auth/AWSEnhancedCognitoIdentityProvider.smali",
+      "8-smali/com/amazonaws/internal/config/InternalConfig.smali",
+      "8-smali/com/amazonaws/services/cognitoidentity/AmazonCognitoIdentityClient.smali",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/transform/CognitoIdentityProviderJsonUnmarshall",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/transform/CognitoIdentityProviderJsonMarshaller",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/transform/GetOpenIdTokenRequestMarshaller.smali",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/transform/UpdateIdentityPoolResultJsonUnmarshal",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/transform/GetCredentialsForIdentityRequestMarsh",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/transform/GetIdRequestMarshaller.smali",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/transform/CreateIdentityPoolResultJsonUnmarshal",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/transform/DescribeIdentityPoolResultJsonUnmarsh",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/CreateIdentityPoolResult.smali",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/CreateIdentityPoolRequest.smali",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/UpdateIdentityPoolRequest.smali",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/CognitoIdentityProvider.smali",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/UpdateIdentityPoolResult.smali",
+      "8-smali/com/amazonaws/services/cognitoidentity/model/DescribeIdentityPoolResult.smali",
+      "8-smali/com/amazonaws/services/cognitoidentity/AmazonCognitoIdentity.smali",
+      "8-smali/com/lightricks/analytics/core/KinesisEndpoint.smali"
+    ]
+  },
+  "oauth": {
+    "count": 203,
+    "samples": [
+      "10-smali/Cj1.smali",
+      "10-smali/EG0.smali",
+      "10-smali/P1$b.smali",
+      "10-smali/TF1.smali",
+      "10-smali/Vi3.smali",
+      "10-smali/XJ1.smali",
+      "10-smali/com/google/android/gms/auth/api/signin/internal/zbb.smali",
+      "10-smali/ij3$a.smali",
+      "10-smali/l01$a.smali",
+      "10-smali/pW.smali",
+      "8-smali/com/google/api/AuthenticationRule.smali",
+      "8-smali/com/google/android/gms/auth/api/signin/internal/zze.smali",
+      "8-smali/com/facebook/internal/WebDialog.smali",
+      "8-smali/com/facebook/internal/InstagramCustomTab$Companion.smali",
+      "8-smali/com/facebook/internal/security/OidcSecurityUtil.smali",
+      "8-smali/com/facebook/login/CustomTabLoginMethodHandler.smali",
+      "8-smali/com/facebook/login/WebViewLoginMethodHandler$AuthDialogBuilder.smali",
+      "8-smali/com/facebook/login/PKCEUtil.smali",
+      "8-smali/com/facebook/AccessTokenManager$FacebookRefreshTokenInfo.smali",
+      "8-smali/com/lightricks/auth/backendApi/fortress/FortressAPI.smali",
+      "8-smali/com/lightricks/pixaloop/authentication/login/LoginAnalytics.smali",
+      "4-smali/org/deviceconnect/android/profile/spec/DConnectServiceSpec.smali",
+      "4-smali/org/deviceconnect/android/profile/AuthorizationProfile$2$1.smali",
+      "4-smali/org/deviceconnect/android/profile/AuthorizationProfile.smali",
+      "4-smali/org/deviceconnect/android/profile/AuthorizationProfile$3.smali",
+      "4-smali/org/deviceconnect/android/manager/R$string.smali",
+      "4-smali/org/deviceconnect/android/manager/core/DConnectLocalOAuth$AccessTokenColumns.smali",
+      "4-smali/org/deviceconnect/android/manager/core/DConnectLocalOAuth.smali",
+      "4-smali/org/deviceconnect/android/manager/core/DConnectManager.smali",
+      "4-smali/org/deviceconnect/android/manager/core/plugin/DevicePlugin$Builder.smali"
+    ]
+  }
+}

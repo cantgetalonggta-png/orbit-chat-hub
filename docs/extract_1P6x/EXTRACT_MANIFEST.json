@@ -1,0 +1,103 @@
+{
+  "dest": "/workspace/work/extracted_shards_1P6x",
+  "rows": [
+    {
+      "name": "6-smali",
+      "status": "ok",
+      "files": 40,
+      "path": "/workspace/work/extracted_shards_1P6x/6-smali"
+    },
+    {
+      "name": "13-smali",
+      "status": "ok",
+      "files": 40,
+      "path": "/workspace/work/extracted_shards_1P6x/13-smali"
+    },
+    {
+      "name": "3-smali",
+      "status": "ok",
+      "files": 3682,
+      "path": "/workspace/work/extracted_shards_1P6x/3-smali"
+    },
+    {
+      "name": "1-arsc",
+      "status": "ok",
+      "files": 443,
+      "path": "/workspace/work/extracted_shards_1P6x/1-arsc"
+    },
+    {
+      "name": "5-smali",
+      "status": "ok",
+      "files": 21937,
+      "path": "/workspace/work/extracted_shards_1P6x/5-smali"
+    },
+    {
+      "name": "12-smali",
+      "status": "ok",
+      "files": 15864,
+      "path": "/workspace/work/extracted_shards_1P6x/12-smali"
+    },
+    {
+      "name": "15-extras",
+      "status": "ok",
+      "files": 776,
+      "path": "/workspace/work/extracted_shards_1P6x/15-extras"
+    },
+    {
+      "name": "4-smali",
+      "status": "ok",
+      "files": 16380,
+      "path": "/workspace/work/extracted_shards_1P6x/4-smali"
+    },
+    {
+      "name": "14-smali",
+      "status": "ok",
+      "files": 12293,
+      "path": "/workspace/work/extracted_shards_1P6x/14-smali"
+    },
+    {
+      "name": "2-smali",
+      "status": "ok",
+      "files": 35946,
+      "path": "/workspace/work/extracted_shards_1P6x/2-smali"
+    },
+    {
+      "name": "8-smali",
+      "status": "ok",
+      "files": 42675,
+      "path": "/workspace/work/extracted_shards_1P6x/8-smali"
+    },
+    {
+      "name": "9-smali",
+      "status": "ok",
+      "files": 43668,
+      "path": "/workspace/work/extracted_shards_1P6x/9-smali"
+    },
+    {
+      "name": "10-smali",
+      "status": "ok",
+      "files": 43694,
+      "path": "/workspace/work/extracted_shards_1P6x/10-smali"
+    },
+    {
+      "name": "1-smali",
+      "status": "ok",
+      "files": 38771,
+      "path": "/workspace/work/extracted_shards_1P6x/1-smali"
+    },
+    {
+      "name": "11-smali",
+      "status": "ok",
+      "files": 38771,
+      "path": "/workspace/work/extracted_shards_1P6x/11-smali"
+    },
+    {
+      "name": "7-smali",
+      "status": "ok",
+      "files": 63845,
+      "path": "/workspace/work/extracted_shards_1P6x/7-smali"
+    }
+  ],
+  "ok": 16,
+  "total_files": 378825
+}

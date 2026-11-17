@@ -1,0 +1,117 @@
+{
+  "cases": [
+    {
+      "p": "/health",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/auth/config",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/session",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/session/cookie",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/gateway/headers",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/livekit/token/dry-run",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/livekit/agent/sim",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/livekit/dispatch/sim",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/livekit/voice/map",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/sandbox/agent/sim",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/agents/registry",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/api/grpc_catalog",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/api/clients",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/create_session/sim",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/debug/state",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/debug/session_root",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/stress/ping?n=5",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/app/",
+      "st": 200,
+      "ok": true
+    }
+  ],
+  "fails": [],
+  "injection": [
+    {
+      "name": "POST /auth/token empty",
+      "st": 400,
+      "ok": true
+    },
+    {
+      "name": "POST /session/cookie empty",
+      "st": 400,
+      "ok": true
+    },
+    {
+      "name": "POST /livekit/token dry",
+      "st": 200,
+      "ok": true
+    }
+  ],
+  "parallel_200": {
+    "ok": 200,
+    "fail": 0,
+    "s": 1.88
+  }
+}
