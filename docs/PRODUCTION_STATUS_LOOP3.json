@@ -1,0 +1,22 @@
+{
+  "loop": 3,
+  "ts": "2026-11-17T09:09:16Z",
+  "hub": "http://127.0.0.1:8787",
+  "routes": 25,
+  "stress": {
+    "parallel_200": "200/200",
+    "parallel_mixed_160": "160/160",
+    "failure_injection": "all handled"
+  },
+  "re": {
+    "apk": "ai.x.grok 1.2.57",
+    "Livekit": "/grok_api.Livekit/CreateToken",
+    "AgentSandbox": "/grok_api.AgentSandbox/MintPreviewToken",
+    "Voice_methods": 26,
+    "Chat_streaming": true,
+    "grok3_sha_distinct_from_grok1": true
+  },
+  "github": "https://github.com/cantgetalonggta-png/orbit-chat-hub",
+  "vercel": "403 create project \u2014 use GitHub Pages or re-auth",
+  "primary_session": "211e2cba-1b23-5ce8-945a-d5e158b037a2"
+}

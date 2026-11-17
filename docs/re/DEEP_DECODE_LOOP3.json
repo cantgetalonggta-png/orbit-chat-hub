@@ -1,0 +1,1529 @@
+{
+  "files_scanned": 3138,
+  "clients": {
+    "grok2/grok_api/GrpcModelsClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.Models/GetModels",
+        "/grok_api.Models/GetModelsImagineOverrides",
+        "/grok_api.Models/ListModes"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/AgentSandboxClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/ToolsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/AttestationServiceClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/SettingsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/ModelsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/GrpcSkillsClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.Skills/ListSkills"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/SuggestionServiceClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/GrpcSuggestionServiceClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.SuggestionService/StreamSuggestions"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/AutomationsServiceClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/GrpcRateLimitsClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.RateLimits/GetRateLimits"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/RateLimitsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/AvatarsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/GrpcChatClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.Chat/AddModelResponse",
+        "/grok_api.Chat/AddResponse",
+        "/grok_api.Chat/AddToolResponse",
+        "/grok_api.Chat/AddUserResponse",
+        "/grok_api.Chat/AskToShareConversation",
+        "/grok_api.Chat/ChooseSBSResponse",
+        "/grok_api.Chat/CloneConversation",
+        "/grok_api.Chat/CreateConversation",
+        "/grok_api.Chat/CreateConversationAndRespond",
+        "/grok_api.Chat/DeleteAllMemoriesV2",
+        "/grok_api.Chat/DeleteConversation",
+        "/grok_api.Chat/DeleteMemory",
+        "/grok_api.Chat/DeleteShareLink",
+        "/grok_api.Chat/DeleteSingleMemoryV2",
+        "/grok_api.Chat/DeleteUserMemoryBlurb",
+        "/grok_api.Chat/DeployApp",
+        "/grok_api.Chat/EditMemoryV2",
+        "/grok_api.Chat/FetchMemoriesV2",
+        "/grok_api.Chat/FetchSuggestions",
+        "/grok_api.Chat/GenerateTitle",
+        "/grok_api.Chat/GetAppDeployment",
+        "/grok_api.Chat/GetConversation",
+        "/grok_api.Chat/GetConversationExists",
+        "/grok_api.Chat/GetConversationStarters"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/GrpcSettingsClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.Settings/AddMobileDeviceNotificationToken",
+        "/grok_api.Settings/GetUserSettings",
+        "/grok_api.Settings/SetUserSettings",
+        "/grok_api.Settings/SubmitTidaReport",
+        "/grok_api.Settings/UserIssueReport"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/FinanceClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/GrpcUserSkillsClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.UserSkills/DeleteUserSkill",
+        "/grok_api.UserSkills/DownloadUserSkill",
+        "/grok_api.UserSkills/GetUserSkill",
+        "/grok_api.UserSkills/ListUserSkills",
+        "/grok_api.UserSkills/ReadUserSkillFile",
+        "/grok_api.UserSkills/SetUserSkillEnabled",
+        "/grok_api.UserSkills/UploadUserSkill"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/GrpcFinanceClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.Finance/FindStock",
+        "/grok_api.Finance/GetRelatedTickers",
+        "/grok_api.Finance/GetStockChartData",
+        "/grok_api.Finance/GetStockFinancials",
+        "/grok_api.Finance/GetStockMiniSummary",
+        "/grok_api.Finance/GetStockSummary"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/GrokForTeamsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/GrpcAgentSandboxClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.AgentSandbox/MintPreviewToken"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/VoiceClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/UserSkillsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/GrpcAutomationsServiceClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.AutomationsService/CreateAutomation",
+        "/grok_api.AutomationsService/DeleteAutomation",
+        "/grok_api.AutomationsService/GetAutomation",
+        "/grok_api.AutomationsService/GetAutomationRuns",
+        "/grok_api.AutomationsService/ListAutomations",
+        "/grok_api.AutomationsService/ListTriggerCatalog",
+        "/grok_api.AutomationsService/PauseAutomation",
+        "/grok_api.AutomationsService/RunAutomationNow",
+        "/grok_api.AutomationsService/UpdateAutomation"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/MediaClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/LivekitClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/GrpcAvatarsClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.Avatars/DeleteCompanionConversation",
+        "/grok_api.Avatars/GetCompanionConversations"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/GrpcAttestationServiceClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.AttestationService/GetAttestationChallenge",
+        "/grok_api.AttestationService/RegisterAttestation"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/GrpcToolsClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.Tools/AddToolPermission",
+        "/grok_api.Tools/ListPermissions",
+        "/grok_api.Tools/RevokeToolPermission"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/GrpcVoiceClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.Voice/AlignAudio",
+        "/grok_api.Voice/CreateGrokCast",
+        "/grok_api.Voice/CreatePassphrase",
+        "/grok_api.Voice/CreateShareLink",
+        "/grok_api.Voice/CreateVoice",
+        "/grok_api.Voice/DeleteVoice",
+        "/grok_api.Voice/EditVoiceApproval",
+        "/grok_api.Voice/GetGrokCast",
+        "/grok_api.Voice/GetPassphrase",
+        "/grok_api.Voice/GetVoice",
+        "/grok_api.Voice/ListGrokCasts",
+        "/grok_api.Voice/ListSavedVoices",
+        "/grok_api.Voice/ListTopVoices",
+        "/grok_api.Voice/ListVoiceShareLinks",
+        "/grok_api.Voice/ListVoices",
+        "/grok_api.Voice/ListVoicesAdmin",
+        "/grok_api.Voice/ResolveShareLink",
+        "/grok_api.Voice/RevokeShareLink",
+        "/grok_api.Voice/SaveVoice",
+        "/grok_api.Voice/SearchVoices",
+        "/grok_api.Voice/SpeechToText",
+        "/grok_api.Voice/Transcribe",
+        "/grok_api.Voice/UnsaveVoice",
+        "/grok_api.Voice/UpdateVoicePersonality"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/ChatClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/GrpcGrokForTeamsFeatureControlsClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.GrokForTeamsFeatureControls/GetFeatureControls",
+        "/grok_api.GrokForTeamsFeatureControls/GetOrganizationAdminControls",
+        "/grok_api.GrokForTeamsFeatureControls/UpdateFeatureControls",
+        "/grok_api.GrokForTeamsFeatureControls/UpdateOrganizationAdminControls"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/GrokForTeamsFeatureControlsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/GrpcMediaClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.Media/AddLibraryAssetsToProject",
+        "/grok_api.Media/AddToGroup",
+        "/grok_api.Media/BulkAddPostsToFolder",
+        "/grok_api.Media/BulkGetCanvasNodes",
+        "/grok_api.Media/BulkGetMediaPosts",
+        "/grok_api.Media/BulkRemovePostsFromFolder",
+        "/grok_api.Media/BulkUnlikeMediaPosts",
+        "/grok_api.Media/CancelPipeline",
+        "/grok_api.Media/CaptionVideo",
+        "/grok_api.Media/CreateCanvasDocument",
+        "/grok_api.Media/CreateCanvasNode",
+        "/grok_api.Media/CreateMediaConversation",
+        "/grok_api.Media/CreateMediaFolder",
+        "/grok_api.Media/CreateMediaPost",
+        "/grok_api.Media/CreatePipelineTemplate",
+        "/grok_api.Media/CreatePostLink",
+        "/grok_api.Media/DeleteAllMediaPostData",
+        "/grok_api.Media/DeleteCanvasDocument",
+        "/grok_api.Media/DeleteCanvasNode",
+        "/grok_api.Media/DeleteMediaFolder",
+        "/grok_api.Media/DeleteMediaPost",
+        "/grok_api.Media/DeletePipelineTemplate",
+        "/grok_api.Media/ForkPipelineTemplate",
+        "/grok_api.Media/GetCanvasAssets"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/SkillsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok2/grok_api/GrpcLivekitClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.Livekit/CreateToken"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/grok_api/GrpcGrokForTeamsClient.smali": {
+      "strings_sample": [
+        "client",
+        "/grok_api.GrokForTeams/GetTeamPublicSettings"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/auth_mgmt/GrpcAuthManagementClient.smali": {
+      "strings_sample": [
+        "client",
+        "/auth_mgmt.AuthManagement/AcceptTeamInvitation",
+        "/auth_mgmt.AuthManagement/AddTeamToIdpGroup",
+        "/auth_mgmt.AuthManagement/AddUserToTeam",
+        "/auth_mgmt.AuthManagement/BlockOrganizationUser",
+        "/auth_mgmt.AuthManagement/CancelTeamInvitation",
+        "/auth_mgmt.AuthManagement/ChangePassword",
+        "/auth_mgmt.AuthManagement/ChangeUserRole",
+        "/auth_mgmt.AuthManagement/CheckApiKeyPropagation",
+        "/auth_mgmt.AuthManagement/CheckDomainSSOEnabled",
+        "/auth_mgmt.AuthManagement/CheckIpRanges",
+        "/auth_mgmt.AuthManagement/CheckPasswordResetToken",
+        "/auth_mgmt.AuthManagement/CheckRecoveryCodes",
+        "/auth_mgmt.AuthManagement/CreateApiKey",
+        "/auth_mgmt.AuthManagement/CreateCookieSetterLink",
+        "/auth_mgmt.AuthManagement/CreateEmailValidationCode",
+        "/auth_mgmt.AuthManagement/CreateIdpGroup",
+        "/auth_mgmt.AuthManagement/CreateMfaRecoveryCodes",
+        "/auth_mgmt.AuthManagement/CreateOauthConnector",
+        "/auth_mgmt.AuthManagement/CreateOneTimeLink",
+        "/auth_mgmt.AuthManagement/CreateSession",
+        "/auth_mgmt.AuthManagement/CreateSessionV2",
+        "/auth_mgmt.AuthManagement/CreateTeam",
+        "/auth_mgmt.AuthManagement/CreateTeamToken",
+        "/auth_mgmt.AuthManagement/CreateUserAndSession"
+      ],
+      "fields": [
+        "client"
+      ]
+    },
+    "grok2/auth_mgmt/AudioModelClient.smali": {
+      "strings_sample": [
+        "client_name",
+        "description",
+        "unknownFields",
+        "client_name",
+        "description",
+        "unknownFields",
+        "client_name=",
+        "description=",
+        "AudioModelClient{"
+      ],
+      "fields": [
+        "ADAPTER",
+        "Companion",
+        "serialVersionUID",
+        "client_name",
+        "description"
+      ]
+    },
+    "grok2/auth_mgmt/AuthManagementClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/GrpcModelsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/AgentSandboxClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/AttestationServiceClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/SettingsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/GrpcNotificationsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/ModelsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/GrpcSkillsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/SuggestionServiceClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/GrpcSuggestionServiceClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/AutomationsServiceClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/GrpcRateLimitsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/RateLimitsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/AvatarsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/GrpcVerifiedAgeClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/GrpcChatClient.smali": {
+      "strings_sample": [
+        "/grok_api.Chat/AddResponse",
+        "/grok_api.Chat/CreateConversationAndRespond",
+        "/grok_api.Chat/ListConversations",
+        "/grok_api.Chat/SoftDeleteConversation"
+      ],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/GrpcSettingsClient.smali": {
+      "strings_sample": [
+        "/grok_api.Settings/GetIntercomJwt",
+        "/grok_api.Settings/GetUserSettings",
+        "/grok_api.Settings/SetUserSettings"
+      ],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/VerifiedAgeClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/GrpcUserSkillsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/GrokForTeamsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/GrpcAgentSandboxClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/VoiceClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/UserSkillsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/GrpcAutomationsServiceClient.smali": {
+      "strings_sample": [
+        "/grok_api.AutomationsService/ListAutomations"
+      ],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/MediaClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/GrpcAvatarsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/GrpcAttestationServiceClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/GrpcVoiceClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/NotificationsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/ChatClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/GrpcGrokForTeamsFeatureControlsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/GrokForTeamsFeatureControlsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/GrpcMediaClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/grok_api/SkillsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok4/grok_api/GrpcGrokForTeamsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/auth_mgmt/GrpcAuthManagementClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok4/auth_mgmt/AuthManagementClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/GrpcModelsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/AgentSandboxClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/AttestationServiceClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/SettingsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/GrpcNotificationsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/ModelsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/GrpcSkillsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/SuggestionServiceClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/GrpcSuggestionServiceClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/AutomationsServiceClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/GrpcRateLimitsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/RateLimitsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/AvatarsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/GrpcVerifiedAgeClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/GrpcChatClient.smali": {
+      "strings_sample": [
+        "/grok_api.Chat/AddResponse",
+        "/grok_api.Chat/CreateConversationAndRespond",
+        "/grok_api.Chat/ListConversations",
+        "/grok_api.Chat/SoftDeleteConversation"
+      ],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/GrpcSettingsClient.smali": {
+      "strings_sample": [
+        "/grok_api.Settings/GetIntercomJwt",
+        "/grok_api.Settings/GetUserSettings",
+        "/grok_api.Settings/SetUserSettings"
+      ],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/VerifiedAgeClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/GrpcUserSkillsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/GrokForTeamsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/GrpcAgentSandboxClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/VoiceClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/UserSkillsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/GrpcAutomationsServiceClient.smali": {
+      "strings_sample": [
+        "/grok_api.AutomationsService/ListAutomations"
+      ],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/MediaClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/GrpcAvatarsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/GrpcAttestationServiceClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/GrpcVoiceClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/NotificationsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/ChatClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/GrpcGrokForTeamsFeatureControlsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/GrokForTeamsFeatureControlsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/GrpcMediaClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/grok_api/SkillsClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    },
+    "grok1/grok_api/GrpcGrokForTeamsClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/auth_mgmt/GrpcAuthManagementClient.smali": {
+      "strings_sample": [],
+      "fields": [
+        "a"
+      ]
+    },
+    "grok1/auth_mgmt/AuthManagementClient.smali": {
+      "strings_sample": [],
+      "fields": []
+    }
+  },
+  "voice_exceptions": [
+    "grok1/ai/x/grok/voice/error/RemoteVoiceException.smali",
+    "grok1/ai/x/grok/voice/internal/RoomInteractor$AgentQuitUnexpectedlyException.smali",
+    "grok1/ai/x/grok/voice/internal/RoomInteractor$ConnectionFailedException.smali",
+    "grok1/ai/x/grok/voice/internal/RoomInteractor$EnableCameraException.smali",
+    "grok1/ai/x/grok/voice/internal/RoomInteractor$EnableMicException.smali",
+    "grok1/ai/x/grok/voice/internal/RoomInteractor$Exception.smali",
+    "grok1/ai/x/grok/voice/internal/RoomInteractor$UnexpectedDisconnectException.smali",
+    "grok1/ai/x/grok/voice/internal/RoomInteractor$UnexpectedException.smali",
+    "grok1/ai/x/grok/voice/internal/RoomInteractor$UpdateSessionException.smali",
+    "grok1/ai/x/grok/voice/internal/RoomInteractor$VoiceLimitException.smali",
+    "grok1/ai/x/grok/voice/internal/watchdog/MicWatchdog$TrippedException.smali",
+    "grok1/ai/x/grok/voice/internal/websocket/capture/AudioCapture$AudioCaptureException.smali",
+    "grok1/ai/x/grok/voice/internal/websocket/connection/NormalCloseException.smali",
+    "grok1/ai/x/grok/voice/internal/websocket/connection/WebSocketClosedException.smali",
+    "grok1/ai/x/grok/voice/internal/websocket/connection/liveness/NetworkStallException.smali",
+    "grok1/ai/x/grok/voice/internal/websocket/playback/PlaybackException.smali",
+    "grok1/ai/x/grok/voice/tools/VoiceToolRouter$UnknownToolException.smali",
+    "grok2/ai/x/grok/voice/internal/livekit/RoomInteractor$AgentQuitUnexpectedlyException.smali",
+    "grok2/ai/x/grok/voice/internal/livekit/RoomInteractor$ConnectionFailedException.smali",
+    "grok2/ai/x/grok/voice/internal/livekit/RoomInteractor$EnableCameraException.smali",
+    "grok2/ai/x/grok/voice/internal/livekit/RoomInteractor$EnableMicException.smali",
+    "grok2/ai/x/grok/voice/internal/livekit/RoomInteractor$Exception.smali",
+    "grok2/ai/x/grok/voice/internal/livekit/RoomInteractor$UnexpectedDisconnectException.smali",
+    "grok2/ai/x/grok/voice/internal/livekit/RoomInteractor$UnexpectedException.smali",
+    "grok2/ai/x/grok/voice/internal/livekit/RoomInteractor$UpdateSessionException.smali",
+    "grok2/ai/x/grok/voice/internal/livekit/RoomInteractor$VoiceLimitException.smali",
+    "grok2/ai/x/grok/voice/internal/watchdog/MicWatchdog$TrippedException.smali",
+    "grok2/ai/x/grok/voice/internal/websocket/capture/AudioCapture$AudioCaptureException.smali",
+    "grok2/ai/x/grok/voice/internal/websocket/connection/NormalCloseException.smali",
+    "grok2/ai/x/grok/voice/internal/websocket/connection/liveness/NetworkStallException.smali",
+    "grok4/ai/x/grok/voice/internal/RoomInteractor$AgentQuitUnexpectedlyException.smali",
+    "grok4/ai/x/grok/voice/internal/RoomInteractor$ConnectionFailedException.smali",
+    "grok4/ai/x/grok/voice/internal/RoomInteractor$EnableCameraException.smali",
+    "grok4/ai/x/grok/voice/internal/RoomInteractor$EnableMicException.smali",
+    "grok4/ai/x/grok/voice/internal/RoomInteractor$Exception.smali",
+    "grok4/ai/x/grok/voice/internal/RoomInteractor$UnexpectedDisconnectException.smali",
+    "grok4/ai/x/grok/voice/internal/RoomInteractor$UnexpectedException.smali",
+    "grok4/ai/x/grok/voice/internal/RoomInteractor$UpdateSessionException.smali",
+    "grok4/ai/x/grok/voice/internal/RoomInteractor$VoiceLimitException.smali",
+    "grok4/ai/x/grok/voice/internal/watchdog/MicWatchdog$TrippedException.smali",
+    "grok4/ai/x/grok/voice/internal/websocket/capture/AudioCapture$AudioCaptureException.smali",
+    "grok4/ai/x/grok/voice/internal/websocket/connection/NormalCloseException.smali",
+    "grok4/ai/x/grok/voice/internal/websocket/connection/WebSocketClosedException.smali",
+    "grok4/ai/x/grok/voice/internal/websocket/connection/liveness/NetworkStallException.smali",
+    "grok4/ai/x/grok/voice/internal/websocket/playback/PlaybackException.smali",
+    "grok4/ai/x/grok/voice/tools/VoiceToolRouter$UnknownToolException.smali"
+  ],
+  "grpc_methods": [
+    {
+      "file": "grok2/io/livekit/android/token/TokenSourceRequest$$serializer.smali",
+      "m": "io.livekit.android.token.TokenSourceRequest"
+    },
+    {
+      "file": "grok2/auth_frontend/CreateSessionRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/auth_frontend.CreateSessionRequest"
+    },
+    {
+      "file": "grok2/grok_api/UploadFileCompleteRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.UploadFileCompleteRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetPipelineTemplateRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetPipelineTemplateRequest"
+    },
+    {
+      "file": "grok2/grok_api/PatchCanvasNodeRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.PatchCanvasNodeRequest"
+    },
+    {
+      "file": "grok2/grok_api/UpdateMediaFolderRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.UpdateMediaFolderRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListModesRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListModesRequest"
+    },
+    {
+      "file": "grok2/grok_api/CreateMediaPostRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.CreateMediaPostRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetCanvasDocumentRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetCanvasDocumentRequest"
+    },
+    {
+      "file": "grok2/grok_api/AlignAudioRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.AlignAudioRequest"
+    },
+    {
+      "file": "grok2/grok_api/EditMemoryV2Request$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.EditMemoryV2Request"
+    },
+    {
+      "file": "grok2/grok_api/DeleteVoiceRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DeleteVoiceRequest"
+    },
+    {
+      "file": "grok2/grok_api/CreateGrokCastRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.CreateGrokCastRequest"
+    },
+    {
+      "file": "grok2/grok_api/DeleteCanvasNodeRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DeleteCanvasNodeRequest"
+    },
+    {
+      "file": "grok2/grok_api/AddLibraryAssetsToProjectRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.AddLibraryAssetsToProjectRequest"
+    },
+    {
+      "file": "grok2/grok_api/LoadResponsesRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.LoadResponsesRequest"
+    },
+    {
+      "file": "grok2/grok_api/CreateVoiceRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.CreateVoiceRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetModelsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetModelsRequest"
+    },
+    {
+      "file": "grok2/grok_api/ImportMemoryRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ImportMemoryRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetAppDeploymentRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetAppDeploymentRequest"
+    },
+    {
+      "file": "grok2/grok_api/VerifyPassphraseRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.VerifyPassphraseRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListConversationsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListConversationsRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetMediaConversationsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetMediaConversationsRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetImportedMemoryStatusRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetImportedMemoryStatusRequest"
+    },
+    {
+      "file": "grok2/grok_api/DeleteCompanionConversationRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DeleteCompanionConversationRequest"
+    },
+    {
+      "file": "grok2/grok_api/RestoreCanvasNodeRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.RestoreCanvasNodeRequest"
+    },
+    {
+      "file": "grok2/grok_api/CreateConversationRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.CreateConversationRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListMediaPostsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListMediaPostsRequest"
+    },
+    {
+      "file": "grok2/grok_api/GoogleDriveReadFileRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GoogleDriveReadFileRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListVoicesAdminRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListVoicesAdminRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListMediaFoldersRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListMediaFoldersRequest"
+    },
+    {
+      "file": "grok2/grok_api/CreateMediaConversationRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.CreateMediaConversationRequest"
+    },
+    {
+      "file": "grok2/grok_api/AddToGroupRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.AddToGroupRequest"
+    },
+    {
+      "file": "grok2/grok_api/RemoveFromGroupRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.RemoveFromGroupRequest"
+    },
+    {
+      "file": "grok2/grok_api/StopInflightResponseRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.StopInflightResponseRequest"
+    },
+    {
+      "file": "grok2/grok_api/DeleteAllMemoriesV2Request$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DeleteAllMemoriesV2Request"
+    },
+    {
+      "file": "grok2/grok_api/RevokeShareLinkRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.RevokeShareLinkRequest"
+    },
+    {
+      "file": "grok2/grok_api/UpdateAutomationRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.UpdateAutomationRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetMemoryRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetMemoryRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListShareLinksRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListShareLinksRequest"
+    },
+    {
+      "file": "grok2/grok_api/UpdateVoiceVisibilityRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.UpdateVoiceVisibilityRequest"
+    },
+    {
+      "file": "grok2/grok_api/DeployAppRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DeployAppRequest"
+    },
+    {
+      "file": "grok2/grok_api/ReconnectResponseRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ReconnectResponseRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListSharedMediaPostsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListSharedMediaPostsRequest"
+    },
+    {
+      "file": "grok2/grok_api/UpdateVoicePersonalityRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.UpdateVoicePersonalityRequest"
+    },
+    {
+      "file": "grok2/grok_api/UserIssueReportRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.UserIssueReportRequest"
+    },
+    {
+      "file": "grok2/grok_api/FileUploadAbortRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.FileUploadAbortRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetQuickAnswerRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetQuickAnswerRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetStockTickerRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetStockTickerRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListResponseNodesRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListResponseNodesRequest"
+    },
+    {
+      "file": "grok2/grok_api/SpeechToTextGenerateRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.SpeechToTextGenerateRequest"
+    },
+    {
+      "file": "grok2/grok_api/DeleteCanvasDocumentRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DeleteCanvasDocumentRequest"
+    },
+    {
+      "file": "grok2/grok_api/ForkPipelineTemplateRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ForkPipelineTemplateRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListGrokCastsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListGrokCastsRequest"
+    },
+    {
+      "file": "grok2/grok_api/CreatePassphraseRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.CreatePassphraseRequest"
+    },
+    {
+      "file": "grok2/grok_api/SearchVoicesRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.SearchVoicesRequest"
+    },
+    {
+      "file": "grok2/grok_api/MigrateConversationsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.MigrateConversationsRequest"
+    },
+    {
+      "file": "grok2/grok_api/UploadFileRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.UploadFileRequest"
+    },
+    {
+      "file": "grok2/grok_api/DeleteMediaFolderRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DeleteMediaFolderRequest"
+    },
+    {
+      "file": "grok2/grok_api/CreateAutomationRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.CreateAutomationRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetStockFinancialsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetStockFinancialsRequest"
+    },
+    {
+      "file": "grok2/grok_api/ReadResponseRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ReadResponseRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetAttestationChallengeRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetAttestationChallengeRequest"
+    },
+    {
+      "file": "grok2/grok_api/SearchMediaPostsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.SearchMediaPostsRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetAutomationRunsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetAutomationRunsRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetCanvasAssetsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetCanvasAssetsRequest"
+    },
+    {
+      "file": "grok2/grok_api/CreatePostLinkRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.CreatePostLinkRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListAutomationsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListAutomationsRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListCanvasDocumentsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListCanvasDocumentsRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListResponsesRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListResponsesRequest"
+    },
+    {
+      "file": "grok2/grok_api/DeleteMediaPostRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DeleteMediaPostRequest"
+    },
+    {
+      "file": "grok2/grok_api/AskToShareConversationRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.AskToShareConversationRequest"
+    },
+    {
+      "file": "grok2/grok_api/UploadFilePatchRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.UploadFilePatchRequest"
+    },
+    {
+      "file": "grok2/grok_api/DownloadUserSkillRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DownloadUserSkillRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetStockChartDataRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetStockChartDataRequest"
+    },
+    {
+      "file": "grok2/grok_api/DeleteAutomationRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DeleteAutomationRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListSoftDeletedConversationsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListSoftDeletedConversationsRequest"
+    },
+    {
+      "file": "grok2/grok_api/BulkRemovePostsFromFolderRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.BulkRemovePostsFromFolderRequest"
+    },
+    {
+      "file": "grok2/grok_api/TriggerMediaSearchIndexRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.TriggerMediaSearchIndexRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetRateLimitsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetRateLimitsRequest"
+    },
+    {
+      "file": "grok2/grok_api/UpdateConversationRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.UpdateConversationRequest"
+    },
+    {
+      "file": "grok2/grok_api/DeleteUserSkillRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DeleteUserSkillRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetConversationExistsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetConversationExistsRequest"
+    },
+    {
+      "file": "grok2/grok_api/GoogleDriveFilesListRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GoogleDriveFilesListRequest"
+    },
+    {
+      "file": "grok2/grok_api/StopConversationInflightResponsesRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.StopConversationInflightResponsesRequest"
+    },
+    {
+      "file": "grok2/grok_api/DeletePipelineTemplateRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DeletePipelineTemplateRequest"
+    },
+    {
+      "file": "grok2/grok_api/RollbackPipelineTemplateRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.RollbackPipelineTemplateRequest"
+    },
+    {
+      "file": "grok2/grok_api/CreateMediaFolderRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.CreateMediaFolderRequest"
+    },
+    {
+      "file": "grok2/grok_api/DeleteAllMediaPostDataRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DeleteAllMediaPostDataRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetModelsImagineOverridesRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetModelsImagineOverridesRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetGrokCastRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetGrokCastRequest"
+    },
+    {
+      "file": "grok2/grok_api/GenerateTitleRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GenerateTitleRequest"
+    },
+    {
+      "file": "grok2/grok_api/StreamSuggestionsRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.StreamSuggestionsRequest"
+    },
+    {
+      "file": "grok2/grok_api/GetPassphraseRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.GetPassphraseRequest"
+    },
+    {
+      "file": "grok2/grok_api/CreateConversationAndRespondRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.CreateConversationAndRespondRequest"
+    },
+    {
+      "file": "grok2/grok_api/UploadUserSkillRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.UploadUserSkillRequest"
+    },
+    {
+      "file": "grok2/grok_api/ListVoiceShareLinksRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.ListVoiceShareLinksRequest"
+    },
+    {
+      "file": "grok2/grok_api/DeleteMemoryRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.DeleteMemoryRequest"
+    },
+    {
+      "file": "grok2/grok_api/SetCanvasThumbnailRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.SetCanvasThumbnailRequest"
+    },
+    {
+      "file": "grok2/grok_api/FindStockRequest$Companion$ADAPTER$1.smali",
+      "m": "type.googleapis.com/grok_api.FindStockRequest"
+    }
+  ],
+  "urls": [
+    {
+      "file": "grok2/io/livekit/android/room/b.smali",
+      "url": "http"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/c.smali",
+      "url": "getState()Lio/livekit/android/room/Room$State;"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/RegionInfo$$serializer.smali",
+      "url": "io.livekit.android.room.RegionInfo"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/Room$Sid$$serializer.smali",
+      "url": "io.livekit.android.room.Room.Sid"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/a.smali",
+      "url": "getConnectionState()Lio/livekit/android/room/ConnectionState;"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/IceCandidateJSON$$serializer.smali",
+      "url": "io.livekit.android.room.IceCandidateJSON"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/d.smali",
+      "url": "http"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/RegionSettings$$serializer.smali",
+      "url": "io.livekit.android.room.RegionSettings"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/participant/Participant$Identity$$serializer.smali",
+      "url": "io.livekit.android.room.participant.Participant.Identity"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/participant/Participant$Sid$$serializer.smali",
+      "url": "io.livekit.android.room.participant.Participant.Sid"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/types/AgentInputSerializer.smali",
+      "url": "io.livekit.android.room.types.AgentInput"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/types/TranscriptionAttributes$$serializer.smali",
+      "url": "io.livekit.android.room.types.TranscriptionAttributes"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/types/AgentSdkStateSerializer.smali",
+      "url": "io.livekit.android.room.types.AgentSdkState"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/types/AgentOutputSerializer.smali",
+      "url": "io.livekit.android.room.types.AgentOutput"
+    },
+    {
+      "file": "grok2/io/livekit/android/room/types/AgentAttributes$$serializer.smali",
+      "url": "io.livekit.android.room.types.AgentAttributes"
+    },
+    {
+      "file": "grok2/io/livekit/android/token/TokenSourceRequest$$serializer.smali",
+      "url": "io.livekit.android.token.TokenSourceRequest"
+    },
+    {
+      "file": "grok2/io/livekit/android/token/RoomConfiguration$$serializer.smali",
+      "url": "io.livekit.android.token.RoomConfiguration"
+    },
+    {
+      "file": "grok2/io/livekit/android/token/RoomAgentDispatch$$serializer.smali",
+      "url": "io.livekit.android.token.RoomAgentDispatch"
+    },
+    {
+      "file": "grok2/io/livekit/android/token/TokenSourceResponse$$serializer.smali",
+      "url": "io.livekit.android.token.TokenSourceResponse"
+    },
+    {
+      "file": "grok2/grok_api/CreateTokenRequest.smali",
+      "url": "livekit_url="
+    },
+    {
+      "file": "grok2/grok_api/CreateTokenResponse$Companion$ADAPTER$1.smali",
+      "url": "livekit.proto"
+    },
+    {
+      "file": "grok2/grok_api/CreateTokenRequest$Companion$ADAPTER$1.smali",
+      "url": "livekit.proto"
+    },
+    {
+      "file": "grok2/grok_api/GrpcLivekitClient.smali",
+      "url": "/grok_api.Livekit/CreateToken"
+    },
+    {
+      "file": "grok2/livekit/org/webrtc/Logging.smali",
+      "url": "livekit.org.webrtc.Logging"
+    },
+    {
+      "file": "grok1/li/c.smali",
+      "url": "https://"
+    }
+  ],
+  "flags": [],
+  "focus": {
+    "grok2/grok_api/CreateTokenRequest.smali": {
+      "fields": [
+        "ADAPTER",
+        "Companion",
+        "serialVersionUID",
+        "agent_name",
+        "conversation_id",
+        "livekit_url",
+        "params",
+        "request_agent_dispatch",
+        "session_payload"
+      ],
+      "strings": [
+        "params",
+        "unknownFields",
+        "params",
+        "unknownFields",
+        "conversation_id=",
+        "agent_name=",
+        "session_payload=",
+        "request_agent_dispatch=",
+        "livekit_url=",
+        "params=",
+        "CreateTokenRequest{"
+      ]
+    },
+    "grok2/grok_api/CreateTokenResponse.smali": {
+      "fields": [
+        "ADAPTER",
+        "Companion",
+        "serialVersionUID",
+        "request_id",
+        "token"
+      ],
+      "strings": [
+        "token",
+        "request_id",
+        "unknownFields",
+        "token",
+        "request_id",
+        "unknownFields",
+        "token=",
+        "request_id=",
+        "CreateTokenResponse{"
+      ]
+    },
+    "grok2/grok_api/LivekitClient.smali": {
+      "fields": [],
+      "strings": []
+    },
+    "grok2/grok_api/GrpcLivekitClient.smali": {
+      "fields": [
+        "client"
+      ],
+      "strings": [
+        "client",
+        "/grok_api.Livekit/CreateToken"
+      ]
+    },
+    "grok2/grok_api/AgentSandboxClient.smali": {
+      "fields": [],
+      "strings": []
+    },
+    "grok4/grok_api/AgentSandboxClient.smali": {
+      "fields": [],
+      "strings": []
+    },
+    "grok2/grok_api/GrpcAgentSandboxClient.smali": {
+      "fields": [
+        "client"
+      ],
+      "strings": [
+        "client",
+        "/grok_api.AgentSandbox/MintPreviewToken"
+      ]
+    },
+    "grok4/grok_api/GrpcAgentSandboxClient.smali": {
+      "fields": [
+        "a"
+      ],
+      "strings": []
+    },
+    "grok2/auth_mgmt/AuthManagementClient.smali": {
+      "fields": [],
+      "strings": []
+    },
+    "grok4/auth_mgmt/AuthManagementClient.smali": {
+      "fields": [],
+      "strings": []
+    },
+    "grok2/ai/x/grok/voice/service/GrokVoiceService.smali": {
+      "fields": [
+        "h",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g"
+      ],
+      "strings": [
+        "instance",
+        "createWithResource(...)",
+        "grok_voice_channel_silent",
+        "build(...)",
+        "GrokVoiceService",
+        "ai.x.grok.voice.ACTION_SCREEN_SHARE_FOREGROUND",
+        "onCreate called",
+        "GrokVoiceService",
+        "onDestroy called",
+        "GrokVoiceService",
+        "GrokVoiceService",
+        "onTaskRemoved ignored for assistant trampoline task",
+        "onTaskRemoved called, app is being killed"
+      ]
+    },
+    "grok4/ai/x/grok/voice/service/GrokVoiceService.smali": {
+      "fields": [
+        "m",
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l"
+      ],
+      "strings": [
+        "instance",
+        "grok_voice_channel_silent",
+        "GrokVoiceService",
+        "grok_voice_channel_silent",
+        "grok_voice_channel",
+        "Should never happen, the service should stop itself if it can\\'t post a notification",
+        "call",
+        "hangUpIntent is required",
+        "person must have a non-empty a name",
+        "ai.x.grok.voice.ACTION_SCREEN_SHARE_FOREGROUND",
+        "onCreate called",
+        "GrokVoiceService",
+        "onDestroy called",
+        "GrokVoiceService",
+        "ai.x.grok.voice.assistant.system.AssistantTrampolineActivity",
+        "GrokVoiceService",
+        "onTaskRemoved ignored for assistant trampoline task",
+        "onTaskRemoved called, app is being killed"
+      ]
+    }
+  },
+  "grok_api_clients": [
+    "AgentSandboxClient.smali",
+    "AttestationServiceClient.smali",
+    "AutomationsServiceClient.smali",
+    "AvatarsClient.smali",
+    "ChatClient.smali",
+    "FinanceClient.smali",
+    "GrokForTeamsClient.smali",
+    "GrokForTeamsFeatureControlsClient.smali",
+    "GrpcAgentSandboxClient.smali",
+    "GrpcAttestationServiceClient.smali",
+    "GrpcAutomationsServiceClient.smali",
+    "GrpcAvatarsClient.smali",
+    "GrpcChatClient.smali",
+    "GrpcFinanceClient.smali",
+    "GrpcGrokForTeamsClient.smali",
+    "GrpcGrokForTeamsFeatureControlsClient.smali",
+    "GrpcLivekitClient.smali",
+    "GrpcMediaClient.smali",
+    "GrpcModelsClient.smali",
+    "GrpcNotificationsClient.smali",
+    "GrpcRateLimitsClient.smali",
+    "GrpcSettingsClient.smali",
+    "GrpcSkillsClient.smali",
+    "GrpcSuggestionServiceClient.smali",
+    "GrpcToolsClient.smali",
+    "GrpcUserSkillsClient.smali",
+    "GrpcVerifiedAgeClient.smali",
+    "GrpcVoiceClient.smali",
+    "LivekitClient.smali",
+    "MediaClient.smali",
+    "ModelsClient.smali",
+    "NotificationsClient.smali",
+    "RateLimitsClient.smali",
+    "SettingsClient.smali",
+    "SkillsClient.smali",
+    "SuggestionServiceClient.smali",
+    "ToolsClient.smali",
+    "UserSkillsClient.smali",
+    "VerifiedAgeClient.smali",
+    "VoiceClient.smali"
+  ]
+}

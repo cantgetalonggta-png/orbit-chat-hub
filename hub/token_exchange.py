@@ -170,7 +170,7 @@ ROUTES = [
     "/livekit/token", "/livekit/token/dry-run",
     "/debug/state", "/debug/session_root",
     "/create_session/sim", "/livekit/agent/sim", "/livekit/dispatch/sim", "/livekit/voice/map",
-    "/sandbox/agent/sim", "/agents/registry", "/stress/ping", "/app", "/app/index.html",
+    "/sandbox/agent/sim", "/agents/registry", "/api/grpc_catalog", "/api/clients", "/stress/ping", "/app", "/app/index.html",
 ]
 
 
@@ -380,6 +380,67 @@ class Handler(BaseHTTPRequestHandler):
             return self._json(200, {"ok": True, "n": n, "ts": time.time(), "pid": os.getpid()})
 
 
+
+        if path in ("/api/grpc_catalog", "/api/clients"):
+            return self._json(200, {
+                "source": "v1.2.57 smali Grpc*Client",
+                "package": "ai.x.grok / grok_api",
+                "Livekit": {
+                    "service": "/grok_api.Livekit",
+                    "methods": ["CreateToken"],
+                    "path": "/grok_api.Livekit/CreateToken",
+                    "CreateTokenRequest_fields": [
+                        "conversation_id", "agent_name", "session_payload",
+                        "request_agent_dispatch", "livekit_url", "params"
+                    ],
+                    "CreateTokenResponse_fields": ["token", "request_id"],
+                },
+                "AgentSandbox": {
+                    "service": "/grok_api.AgentSandbox",
+                    "methods": ["MintPreviewToken"],
+                    "path": "/grok_api.AgentSandbox/MintPreviewToken",
+                    "note": "not_sandbox preview token mint for agent jobs",
+                },
+                "Voice": {
+                    "service": "/grok_api.Voice",
+                    "methods": [
+                        "AlignAudio","CreateGrokCast","CreatePassphrase","CreateShareLink",
+                        "CreateVoice","DeleteVoice","EditVoiceApproval","GetGrokCast",
+                        "GetPassphrase","GetVoice","ListGrokCasts","ListSavedVoices",
+                        "ListTopVoices","ListVoiceShareLinks","ListVoices","ListVoicesAdmin",
+                        "ResolveShareLink","RevokeShareLink","SaveVoice","SearchVoices",
+                        "SpeechToText","Transcribe","UnsaveVoice","UpdateVoicePersonality",
+                        "UpdateVoiceVisibility","VerifyPassphrase"
+                    ],
+                },
+                "Chat": {
+                    "service": "/grok_api.Chat",
+                    "methods_sample": [
+                        "CreateConversation","CreateConversationAndRespond","AddResponse",
+                        "AddModelResponse","AddUserResponse","AddToolResponse",
+                        "GetConversation","GetConversation_V2","ListConversations",
+                        "DeleteConversation","CloneConversation","GenerateTitle",
+                        "FetchMemoriesV2","GetQuickAnswer","DeployApp","ListImageGenerations"
+                    ],
+                    "streaming": ["AddResponse","CreateConversationAndRespond"],
+                },
+                "AuthManagement": {"client": "auth_mgmt.AuthManagementClient / GrpcAuthManagementClient"},
+                "other_clients": [
+                    "Skills.ListSkills","Tools.AddToolPermission/ListPermissions/RevokeToolPermission",
+                    "Media","Models","Notifications","RateLimits","Settings",
+                    "SuggestionService","UserSkills","VerifiedAge","Avatars","Finance",
+                    "Automations","Attestation","GrokForTeams"
+                ],
+                "live_session_chain": [
+                    "CreateSession → session_cookie",
+                    "Chat.CreateConversation (optional)",
+                    "Livekit.CreateToken(request_agent_dispatch=true)",
+                    "RoomInteractor connect",
+                    "AgentSandbox.MintPreviewToken (optional not_sandbox)",
+                    "GrokVoiceService / Voice.* runtime",
+                ],
+            })
+
         if path == "/livekit/voice/map":
             return self._json(200, {
                 "package": "ai.x.grok.voice",
@@ -427,7 +488,7 @@ class Handler(BaseHTTPRequestHandler):
                 "proto": "grok_api.AgentSandboxClient",
                 "grpc": "GrpcAgentSandboxClient",
                 "note": "not_sandbox / AgentSandbox path for cloud agent jobs",
-                "ops": ["CreateSandbox", "Attach", "Exec", "Teardown"],
+                "ops": ["MintPreviewToken"], "grpc_path": "/grok_api.AgentSandbox/MintPreviewToken",
                 "ties": ["request_agent_dispatch", "CreateAgentRequest", "JobAssignment"],
             })
         if path == "/agents/registry":

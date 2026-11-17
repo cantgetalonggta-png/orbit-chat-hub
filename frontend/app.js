@@ -142,3 +142,6 @@ async function loadSandbox() {
 document.getElementById('btnVoiceMap')?.addEventListener('click', loadVoiceMap);
 document.getElementById('btnAgents')?.addEventListener('click', loadAgents);
 document.getElementById('btnSandbox')?.addEventListener('click', loadSandbox);
+
+async function loadGrpc(){ const r=await api('GET','/api/grpc_catalog'); show('#grpcOut', r.json); }
+document.getElementById('btnGrpc')?.addEventListener('click', loadGrpc);

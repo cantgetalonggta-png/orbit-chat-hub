@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ORBIT Chat Hub · ECHO-EC69</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header class="top">
+  <div class="brand">ORBIT · Chat Hub / Bridge</div>
+  <div class="badges">
+    <span class="badge" id="hub-badge">hub…</span>
+    <span class="badge muted">session 211e2cba…</span>
+    <span class="badge muted">ECHO-EC69</span>
+  </div>
+</header>
+<nav class="nav">
+  <button data-tab="dashboard" class="active">Dashboard</button>
+  <button data-tab="auth">Auth / Cognito</button>
+  <button data-tab="session">Session Cookie</button>
+  <button data-tab="gateway">Data Gateway</button>
+  <button data-tab="livekit">LiveKit Voice</button>
+  <button data-tab="createsession">CreateSession Sim</button>
+  <button data-tab="debug">Debug / Stress</button>
+  <button data-tab="board">RE Board</button>
+  <button data-tab="swarm">Swarm / Voice</button>
+</nav>
+<main>
+  <section id="tab-dashboard" class="tab active">
+    <h2>Operator Dashboard</h2>
+    <div class="grid">
+      <div class="card"><h3>Hub base</h3>
+        <input id="hubBase" value="http://127.0.0.1:8787"/>
+        <button id="btnHealth">Ping /health</button>
+        <pre id="healthOut" class="out"></pre>
+      </div>
+      <div class="card"><h3>Session root</h3>
+        <button id="btnRoot">GET /debug/session_root</button>
+        <pre id="rootOut" class="out"></pre>
+      </div>
+      <div class="card"><h3>Quick links</h3>
+        <ul id="routeList"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="tab-auth" class="tab">
+    <h2>Cognito Auth</h2>
+    <div class="grid">
+      <div class="card">
+        <button id="btnAuthCfg">GET /auth/config</button>
+        <button id="btnLogin">GET /auth/login</button>
+        <button id="btnLogout">GET /auth/logout</button>
+        <pre id="authOut" class="out"></pre>
+        <a id="loginLink" href="#" target="_blank" class="btnlink" style="display:none">Open Cognito Hosted UI</a>
+      </div>
+      <div class="card">
+        <h3>Token exchange</h3>
+        <label>OAuth code</label>
+        <input id="oauthCode" placeholder="code from callback"/>
+        <label>redirect_uri</label>
+        <input id="redirectUri" placeholder="http://127.0.0.1:8787/auth/callback/"/>
+        <button id="btnToken">POST /auth/token</button>
+        <pre id="tokenOut" class="out"></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="tab-session" class="tab">
+    <h2>Session Cookie Wiring</h2>
+    <div class="card">
+      <label>session_cookie</label>
+      <input id="sessCookie" placeholder="session=…; Path=/; HttpOnly"/>
+      <label>session_id</label>
+      <input id="sessId" placeholder="sess_…"/>
+      <label>user_id</label>
+      <input id="userId" placeholder="user_…"/>
+      <label>sign_in_method</label>
+      <select id="signIn">
+        <option>EMAIL_PASSWORD</option>
+        <option>GOOGLE_OAUTH2</option>
+        <option>X_OAUTH2</option>
+        <option>APPLE_OAUTH2</option>
+      </select>
+      <div class="row">
+        <button id="btnStoreCookie">POST /session/cookie</button>
+        <button id="btnGetSession">GET /session</button>
+        <button id="btnGetSessionRaw">GET /session?raw=1</button>
+        <button id="btnClearSession" class="danger">DELETE /session</button>
+      </div>
+      <pre id="sessOut" class="out"></pre>
+    </div>
+  </section>
+
+  <section id="tab-gateway" class="tab">
+    <h2>Data Gateway (Li/p headers + app_config)</h2>
+    <div class="card">
+      <button id="btnHeaders">GET /gateway/headers</button>
+      <button id="btnHeadersRaw">GET /gateway/headers?raw=1</button>
+      <button id="btnAppCfgDry">POST /gateway/app_config dry</button>
+      <button id="btnAppCfgProxy" class="warn">POST /gateway/app_config proxy=true</button>
+      <pre id="gwOut" class="out"></pre>
+    </div>
+  </section>
+
+  <section id="tab-livekit" class="tab">
+    <h2>LiveKit Voice Token</h2>
+    <div class="card">
+      <label>conversation_id</label>
+      <input id="convId" value=""/>
+      <label>agent_name</label>
+      <input id="agentName" value="grok-voice"/>
+      <div class="row">
+        <button id="btnLkDry">GET dry-run</button>
+        <button id="btnLkPost">POST dry (proxy=false)</button>
+        <button id="btnLkProxy" class="warn">POST proxy=true</button>
+      </div>
+      <pre id="lkOut" class="out"></pre>
+    </div>
+  </section>
+
+  <section id="tab-createsession" class="tab">
+    <h2>CreateSession Simulator</h2>
+    <div class="card">
+      <button id="btnSimGet">GET /create_session/sim</button>
+      <label>email</label>
+      <input id="simEmail" value="demo@example.com"/>
+      <button id="btnSimPost">POST sim + store cookie</button>
+      <pre id="simOut" class="out"></pre>
+    </div>
+  </section>
+
+  <section id="tab-debug" class="tab">
+    <h2>Debug / Failure Injection</h2>
+    <div class="card">
+      <button id="btnDebugState">GET /debug/state</button>
+      <button id="btnMissingCode">POST /auth/token missing code (expect 400)</button>
+      <button id="btnMissingCookie">POST /session/cookie empty (expect 400)</button>
+      <button id="btn404">GET /no-such-route (expect 404)</button>
+      <button id="btnStress">Run mini stress pack</button>
+      <pre id="dbgOut" class="out"></pre>
+    </div>
+  </section>
+
+  <section id="tab-board" class="tab">
+    <h2>RE Architecture Board</h2>
+    <p class="muted">Frames live under project/board — open locally or via static deploy.</p>
+    <ul>
+      <li>01 fetch path · 02 read API · 03 contract · 04 endpoint</li>
+      <li>05 class map · 06 clients · 07 library hosts · 08 header interceptor</li>
+      <li>09 auth session · 10 livekit auth · 11 session cookie / voice</li>
+    </ul>
+    <div class="card">
+      <h3>Ingest live summary</h3>
+      <pre id="ingestOut" class="out">Load via hub or open corpus/INGEST_LIVE.json</pre>
+    </div>
+  </section>
+
+  <section id="tab-swarm" class="tab">
+    <h2>23-Agent Swarm + Voice Map</h2>
+    <div class="grid">
+      <div class="card"><h3>Agents registry</h3>
+        <button id="btnAgents">GET /agents/registry</button>
+        <pre id="agentsOut" class="out"></pre>
+      </div>
+      <div class="card"><h3>Live session / voice map</h3>
+        <button id="btnVoiceMap">GET /livekit/voice/map</button>
+        <pre id="voiceMapOut" class="out"></pre>
+      </div>
+      <div class="card"><h3>AgentSandbox</h3>
+        <button id="btnSandbox">GET /sandbox/agent/sim</button>
+        <pre id="sandboxOut" class="out"></pre>
+      </div>
+
+      <div class="card"><h3>gRPC API catalog (v1.2.57)</h3>
+        <button id="btnGrpc">GET /api/grpc_catalog</button>
+        <pre id="grpcOut" class="out"></pre>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+<footer>ORBIT-LEAD DEP-01 · primary 211e2cba-1b23-5ce8-945a-d5e158b037a2 · secrets masked unless ?raw=1</footer>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+{
+  "cases": [
+    {
+      "m": "GET",
+      "p": "/health",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/auth/config",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/session",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/session/cookie",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/gateway/headers",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/livekit/token/dry-run",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/livekit/agent/sim",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/livekit/dispatch/sim",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/livekit/voice/map",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/sandbox/agent/sim",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/agents/registry",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/api/grpc_catalog",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/api/clients",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/create_session/sim",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/debug/state",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/debug/session_root",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/stress/ping?n=3",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "GET",
+      "p": "/app/",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "m": "POST",
+      "p": "/auth/token",
+      "st": 400,
+      "ok": true
+    },
+    {
+      "m": "POST",
+      "p": "/session/cookie",
+      "st": 400,
+      "ok": true
+    },
+    {
+      "m": "POST",
+      "p": "/livekit/token",
+      "st": 200,
+      "ok": true
+    }
+  ],
+  "fails": [],
+  "parallel_200": {
+    "ok": 200,
+    "fail": 0,
+    "seconds": 2.328
+  },
+  "parallel_mixed_160": {
+    "ok": 160,
+    "fail": 0,
+    "seconds": 1.917
+  },
+  "ts": 1794906537.847232
+}
