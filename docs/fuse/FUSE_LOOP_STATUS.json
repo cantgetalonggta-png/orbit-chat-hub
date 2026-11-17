@@ -1,0 +1,39 @@
+{
+  "loop": "FUSE_NEXT_SESSION",
+  "ts": "2026-11-17T23:12:18Z",
+  "primary": "211e2cba-1b23-5ce8-945a-d5e158b037a2",
+  "org": "ECHO-EC69",
+  "bootstrap": "FUSE_BOOTSTRAP_OK",
+  "providers": {
+    "aws_sts": "ok",
+    "aws_account": "166147842499",
+    "aws_identity": "iam root (recommend IAM user with least privilege \u2014 rotate keys after paste in chat)",
+    "hf": "ok",
+    "hf_user": "albedd",
+    "hf_fullname": "bed"
+  },
+  "cognito": {
+    "pool": "orbit-chat-hub",
+    "pool_id": "us-east-1_yr5vuS7Kz",
+    "domain": "orbit-echo-ec69-1yr5vus7kz",
+    "client": "orbit-chat-hub-web",
+    "users_est": 1
+  },
+  "hub": {
+    "routes": 31,
+    "stress_ping_parallel_200": "200/200 after UnboundLocalError fix",
+    "health_waves": "100/100 150/150 200/200",
+    "failure_injection": "ok",
+    "providers_status": "/providers/status"
+  },
+  "secrets": {
+    "stored": [
+      ".provider.env",
+      "permanent/system_config/.secrets.env"
+    ],
+    "mode": "600",
+    "git": "NEVER committed",
+    "security_note": "Credentials were pasted in chat \u2014 rotate AWS root keys and HF token when practical"
+  },
+  "vercel": "skipped per user"
+}

@@ -2,6 +2,7 @@
 """Orbit Chat Hub — Cognito token exchange + session_cookie + LiveKit bridge."""
 from __future__ import annotations
 
+import os
 import json, os, sys, time, urllib.parse, urllib.request, urllib.error, hashlib, uuid
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
@@ -170,7 +171,7 @@ ROUTES = [
     "/livekit/token", "/livekit/token/dry-run",
     "/debug/state", "/debug/session_root",
     "/create_session/sim", "/livekit/agent/sim", "/livekit/dispatch/sim", "/livekit/voice/map",
-    "/sandbox/agent/sim", "/agents/registry", "/api/grpc_catalog", "/api/clients", "/extract/1p6x", "/skills/registry", "/plugins/list", "/system/config", "/system/capabilities", "/stress/ping", "/app", "/app/index.html",
+    "/sandbox/agent/sim", "/agents/registry", "/api/grpc_catalog", "/api/clients", "/extract/1p6x", "/skills/registry", "/plugins/list", "/system/config", "/system/capabilities", "/providers/status", "/stress/ping", "/app", "/app/index.html",
 ]
 
 
@@ -444,6 +445,26 @@ class Handler(BaseHTTPRequestHandler):
         
         
         
+        
+        if path == "/providers/status":
+            st_path = Path("/workspace/artifacts/fuse/session_status.json")
+            st = json.loads(st_path.read_text()) if st_path.exists() else {}
+            # never expose secrets — only booleans + public ids
+            return self._json(200, {
+                "aws_configured": bool(os.environ.get("AWS_ACCESS_KEY_ID")),
+                "hf_configured": bool(os.environ.get("HF_TOKEN")),
+                "region": os.environ.get("AWS_DEFAULT_REGION",""),
+                "fuse": st,
+                "cognito": {
+                    "pool_id": "us-east-1_yr5vuS7Kz",
+                    "pool_name": "orbit-chat-hub",
+                    "domain": "orbit-echo-ec69-1yr5vus7kz",
+                    "client_name": "orbit-chat-hub-web",
+                    "client_id": "1t94d90dg0lc6uiemlukj98p5u",
+                },
+                "note": "secrets only in .provider.env / .secrets.env (mode 600); not returned here",
+            })
+
         if path == "/system/config":
             paths = [
                 Path("/workspace/artifacts/permanent/system_config/config.yaml"),
