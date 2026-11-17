@@ -1,0 +1,58 @@
+plugin:
+  name: autonomous-fullstack-delivery
+  version: 1.0.0
+  description: >-
+    Grok Build plugin containing individual operational skills and a master
+    full-stack delivery workflow, runbook, troubleshooting encyclopedia, and
+    machine-readable configuration.
+  skills_directory: skills
+  master_skill: skills/autonomous-fullstack-delivery/SKILL.md
+  master_runbook: skills/autonomous-fullstack-delivery/references/DEPLOYMENT_RUNBOOK.md
+  encyclopedia: skills/autonomous-fullstack-delivery/references/ENCYCLOPEDIA.md
+
+workflow:
+  id: fullstack-delivery
+  mode: autonomous_bounded
+  phases:
+    - discover
+    - specify
+    - design
+    - implement
+    - quality
+    - package
+    - deploy_preview
+    - deploy_targets
+    - verify
+    - observe
+    - handoff
+  autonomy:
+    continue_independent_work_on_blocker: true
+    ask_user_only_for_hard_blocker: true
+    max_repair_cycles_per_failure_class: 3
+    max_distinct_diagnostic_paths_per_failure: 5
+    checkpoint_after_each_phase: true
+    checkpoint_before_pause: true
+    resume_from_observed_state: true
+    never_retry_without_state_check: true
+    retry_backoff_seconds: [2, 5, 15]
+  deployment:
+    targets: []
+    order: [preview, staging, production]
+    strategy: configured
+    require_target_health_before_next: true
+    traffic_steps_percent: [5, 25, 50, 100]
+    observation_window_seconds: 300
+    rollback_on_failed_health_gate: true
+    production_requires_explicit_target_config: true
+    verify_dns_tls_routes_assets_api_and_worker: true
+  background_tasks:
+    status_poll_interval_seconds: 10
+    max_runtime_seconds: 7200
+    persist_job_id_and_log_pointer: true
+    capture_exit_code: true
+    resume_policy: inspect_then_resume_or_restart_idempotently
+  outputs:
+    checkpoint_file: .delivery/workflow-state.json
+    operation_log: .delivery/operation-log.jsonl
+    report_file: .delivery/final-report.md
+    artifact_manifest: .delivery/artifacts.json

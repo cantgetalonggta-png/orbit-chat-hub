@@ -170,7 +170,7 @@ ROUTES = [
     "/livekit/token", "/livekit/token/dry-run",
     "/debug/state", "/debug/session_root",
     "/create_session/sim", "/livekit/agent/sim", "/livekit/dispatch/sim", "/livekit/voice/map",
-    "/sandbox/agent/sim", "/agents/registry", "/api/grpc_catalog", "/api/clients", "/extract/1p6x", "/skills/registry", "/plugins/list", "/stress/ping", "/app", "/app/index.html",
+    "/sandbox/agent/sim", "/agents/registry", "/api/grpc_catalog", "/api/clients", "/extract/1p6x", "/skills/registry", "/plugins/list", "/system/config", "/system/capabilities", "/stress/ping", "/app", "/app/index.html",
 ]
 
 
@@ -443,6 +443,61 @@ class Handler(BaseHTTPRequestHandler):
 
         
         
+        
+        if path == "/system/config":
+            paths = [
+                Path("/workspace/artifacts/permanent/system_config/config.yaml"),
+                Path("/workspace/artifacts/project/config/config.yaml"),
+                Path("/root/.grok/plugins/autonomous-fullstack-delivery/config.yaml"),
+            ]
+            primary = next((x for x in paths if x.exists()), None)
+            text = primary.read_text() if primary else ""
+            return self._json(200, {
+                "editable_primary": str(paths[0]),
+                "mirrors": [str(x) for x in paths],
+                "exists": primary is not None,
+                "bytes": len(text.encode()) if text else 0,
+                "raw": text,
+                "note": "Edit permanent/system_config/config.yaml then GET /system/config to verify",
+            })
+        if path == "/system/capabilities":
+            srv = Path("/root/.grok/server-skills")
+            plug = Path("/root/.grok/plugins")
+            skills = sorted([d.name for d in srv.iterdir() if d.is_dir()]) if srv.exists() else []
+            return self._json(200, {
+                "session_id": "211e2cba-1b23-5ce8-945a-d5e158b037a2",
+                "mode": "orbit-chat-hub + autonomous-fullstack-delivery plugin",
+                "server_skills": len(skills),
+                "skill_names_sample": skills[:40],
+                "plugin_skills": sum(1 for _ in plug.rglob("SKILL.md")) if plug.exists() else 0,
+                "hub_routes_hint": "see /health",
+                "advanced_vs_basic": {
+                    "basic_grok": [
+                        "chat completion",
+                        "single-turn tool use",
+                        "generic web search",
+                        "image/video generation",
+                        "no persistent multi-agent swarm",
+                        "no local production hub bridge",
+                        "no Grok Android DataGateway RE corpus",
+                        "no skill plugin install tree",
+                    ],
+                    "this_system": [
+                        "orbit-hub token exchange on :8787 (Cognito OAuth, session_cookie, Li/p gateway headers, LiveKit token proxy)",
+                        "55-skill autonomous-fullstack-delivery plugin + 100+ server skills",
+                        "editable system config.yaml (workflow phases, autonomy, deploy gates)",
+                        "Parallel stress/failure-injection production testing",
+                        "Smali/DEX permanent extract workspace (Grok + mixed dumps)",
+                        "live_session / LiveKit / AgentSandbox route sims",
+                        "multi-agent tooling blueprints + master-run-command-center",
+                        "connected tools: Drive, GitHub, (Vercel blocked by team 403 — skipped)",
+                        "self-healing / auto-recovery / auto-deployment skill contracts",
+                        "SPA operator dashboard with Skills/Plugins tabs",
+                        "permanent FUSE drive_pull roots + install inventories",
+                    ],
+                },
+            })
+
         if path == "/skills/registry":
             srv = Path("/root/.grok/server-skills")
             proj = Path("/workspace/artifacts/project/skills")

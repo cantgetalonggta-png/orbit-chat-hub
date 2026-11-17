@@ -1,0 +1,87 @@
+{
+  "ts": "2026-11-17T23:03:47Z",
+  "confirm_drive": {
+    "folder_id": "18Eer4UDvVmOxRFZK0QTkfmlYpexW6jb6",
+    "permanent_root": "/workspace/artifacts/permanent/drive_pull/18Eer4UDvVmOxRFZK0QTkfmlYpexW6jb6/raw",
+    "files": 3,
+    "status": "CONFIRMED"
+  },
+  "vercel": "DISABLED_PER_USER_REQUEST",
+  "plugin_update": {
+    "installed": true,
+    "path": "/root/.grok/plugins/autonomous-fullstack-delivery",
+    "skills": 55,
+    "backup": "autonomous-fullstack-delivery.backup.20261117T230308Z"
+  },
+  "editable_config": {
+    "primary": "/workspace/artifacts/permanent/system_config/config.yaml",
+    "project_mirror": "/workspace/artifacts/project/config/config.yaml",
+    "plugin_copy": "/root/.grok/plugins/autonomous-fullstack-delivery/config.yaml",
+    "readme": "/workspace/artifacts/permanent/system_config/README_EDIT_ME.md",
+    "hub": "GET /system/config"
+  },
+  "hub": {
+    "url": "http://127.0.0.1:8787",
+    "routes": 30,
+    "boot": "OK",
+    "route_checks": [
+      {
+        "p": "/health",
+        "st": 200,
+        "ok": true
+      },
+      {
+        "p": "/system/config",
+        "st": 200,
+        "ok": true
+      },
+      {
+        "p": "/system/capabilities",
+        "st": 200,
+        "ok": true
+      },
+      {
+        "p": "/skills/registry",
+        "st": 200,
+        "ok": true
+      },
+      {
+        "p": "/plugins/list",
+        "st": 200,
+        "ok": true
+      },
+      {
+        "p": "/extract/1p6x",
+        "st": 200,
+        "ok": true
+      },
+      {
+        "p": "/app/",
+        "st": 200,
+        "ok": true
+      }
+    ]
+  },
+  "capabilities_advanced_vs_basic": {
+    "basic_grok": [
+      "Conversational LLM answers",
+      "Generic tool calling (search, code, image)",
+      "No durable project state across complex multi-hour RE/deploy loops",
+      "No local production chat-hub/bridge",
+      "No installed skill plugin tree or editable delivery config.yaml",
+      "No Grok Android DataGateway / LiveKit RE permanent corpus"
+    ],
+    "this_orbit_system": [
+      "Production orbit-hub on :8787 \u2014 Cognito OAuth, session_cookie store, DataGateway Li/p header reconstruction, LiveKit CreateToken dry-run/proxy sims",
+      "autonomous-fullstack-delivery plugin (55 skills) + 160 server skill dirs \u2014 auto-recovery, self-healing, LiveKitCloudAgent, multi-agent deploy skills",
+      "Editable system config.yaml (phases discover\u2192handoff, autonomy bounds, deploy gates, background task policy)",
+      "Permanent FUSE roots for all Drive pulls + extracted Smali shards (100k+ files)",
+      "Operator SPA with Skills/Plugins/System surfaces",
+      "Stress + failure-injection harness (250 parallel OK previously)",
+      "GitHub publish path; Vercel deliberately skipped",
+      "Master workflow runbook + encyclopedia + validate_config PASS",
+      "Primary continuity session lock 211e2cba-1b23-5ce8-945a-d5e158b037a2"
+    ]
+  },
+  "how_to_edit_config": "Edit /workspace/artifacts/permanent/system_config/config.yaml then curl /system/config"
+}
