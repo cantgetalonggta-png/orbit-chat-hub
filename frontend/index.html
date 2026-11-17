@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ORBIT Chat Hub · ECHO-EC69</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header class="top">
+  <div class="brand">ORBIT · Chat Hub / Bridge</div>
+  <div class="badges">
+    <span class="badge" id="hub-badge">hub…</span>
+    <span class="badge muted">session 211e2cba…</span>
+    <span class="badge muted">ECHO-EC69</span>
+  </div>
+</header>
+<nav class="nav">
+  <button data-tab="dashboard" class="active">Dashboard</button>
+  <button data-tab="auth">Auth / Cognito</button>
+  <button data-tab="session">Session Cookie</button>
+  <button data-tab="gateway">Data Gateway</button>
+  <button data-tab="livekit">LiveKit Voice</button>
+  <button data-tab="createsession">CreateSession Sim</button>
+  <button data-tab="debug">Debug / Stress</button>
+  <button data-tab="board">RE Board</button>
+</nav>
+<main>
+  <section id="tab-dashboard" class="tab active">
+    <h2>Operator Dashboard</h2>
+    <div class="grid">
+      <div class="card"><h3>Hub base</h3>
+        <input id="hubBase" value="http://127.0.0.1:8787"/>
+        <button id="btnHealth">Ping /health</button>
+        <pre id="healthOut" class="out"></pre>
+      </div>
+      <div class="card"><h3>Session root</h3>
+        <button id="btnRoot">GET /debug/session_root</button>
+        <pre id="rootOut" class="out"></pre>
+      </div>
+    </div>
+  </section>
+  <section id="tab-auth" class="tab"><h2>Auth / Cognito</h2>
+    <button id="btnAuthCfg">GET /auth/config</button>
+    <button id="btnLogin">GET /auth/login</button>
+    <pre id="authOut" class="out"></pre>
+  </section>
+  <section id="tab-session" class="tab"><h2>Session Cookie</h2>
+    <button id="btnSess">GET /session</button>
+    <button id="btnSessCookie">GET /session/cookie</button>
+    <pre id="sessOut" class="out"></pre>
+  </section>
+  <section id="tab-gateway" class="tab"><h2>Data Gateway</h2>
+    <button id="btnGw">GET /gateway/headers</button>
+    <pre id="gwOut" class="out"></pre>
+  </section>
+  <section id="tab-livekit" class="tab">
+    <h2>LiveKit Voice + Cloud Agent</h2>
+    <div class="grid">
+      <div class="card"><h3>Token dry-run</h3>
+        <button id="btnLiveDry">GET /livekit/token/dry-run</button>
+        <pre id="liveDryOut" class="out"></pre>
+      </div>
+      <div class="card"><h3>CloudAgent CreateAgent sim</h3>
+        <button id="btnAgent">GET /livekit/agent/sim</button>
+        <pre id="agentOut" class="out"></pre>
+      </div>
+      <div class="card"><h3>Agent Dispatch / background</h3>
+        <button id="btnDispatch">GET /livekit/dispatch/sim</button>
+        <pre id="dispatchOut" class="out"></pre>
+      </div>
+      <div class="card"><h3>Stress ping</h3>
+        <input id="stressN" value="32" type="number"/>
+        <button id="btnStress">Run parallel stress</button>
+        <pre id="stressOut" class="out"></pre>
+      </div>
+    </div>
+  </section>
+  <section id="tab-createsession" class="tab"><h2>CreateSession Sim</h2>
+    <button id="btnCS">GET /create_session/sim</button>
+    <pre id="csOut" class="out"></pre>
+  </section>
+  <section id="tab-debug" class="tab"><h2>Debug / Stress</h2>
+    <button id="btnDbg">GET /debug/state</button>
+    <pre id="dbgOut" class="out"></pre>
+  </section>
+  <section id="tab-board" class="tab"><h2>RE Board</h2>
+    <pre class="out">DataGateway: credentials → Li/s retry → Li/v → Li/p headers → Li/a → Li/h cache → Li/o → Li/I
+LiveKit: CreateTokenRequest + CloudAgent CreateAgent + dispatch
+Flag: android_data_gateway_config_enabled
+Session root: 211e2cba-1b23-5ce8-945a-d5e158b037a2</pre>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
