@@ -1,0 +1,81 @@
+{
+  "file": "Grok v1.2.33-release.00 - Mod.apk",
+  "scannedFiles": 2370,
+  "finding_categories": {
+    "Google": 5,
+    "URL": 226,
+    "Generic": 1,
+    "Firebase": 1
+  },
+  "findings_redacted_sample": {
+    "Google": [
+      {
+        "key": "Google API Key",
+        "redacted": "AIzaSy\u2026Oq38",
+        "source": "AndroidManifest.xml"
+      },
+      {
+        "key": "Google API Key",
+        "redacted": "AIzaSy\u2026Ng_w",
+        "source": "AndroidManifest.xml"
+      },
+      {
+        "key": "OAuth Client ID",
+        "redacted": "455662\u2026.com",
+        "source": "classes.dex"
+      },
+      {
+        "key": "Google Cloud Project Number",
+        "redacted": "***",
+        "source": "classes.dex"
+      },
+      {
+        "key": "Google API Key",
+        "redacted": "AIzaSy\u20263D6o",
+        "source": "resources.arsc"
+      }
+    ],
+    "URL": [
+      {
+        "key": "API Endpoint",
+        "redacted": "https:\u2026enum",
+        "source": "assets/novnc/core/websock.js"
+      },
+      {
+        "key": "API Endpoint",
+        "redacted": "http:/\u2026es\\n",
+        "source": "assets/syntax/grammars/source.css.tmLanguage.json"
+      },
+      {
+        "key": "API Endpoint",
+        "redacted": "https:\u2026.com",
+        "source": "classes.dex"
+      },
+      {
+        "key": "API Endpoint",
+        "redacted": "https:\u2026age/",
+        "source": "classes.dex"
+      },
+      {
+        "key": "API Endpoint",
+        "redacted": "https:\u2026ups/",
+        "source": "classes.dex"
+      }
+    ],
+    "Generic": [
+      {
+        "key": "Bearer Token",
+        "redacted": "Bearer\u2026ails",
+        "source": "classes5.dex"
+      }
+    ],
+    "Firebase": [
+      {
+        "key": "Firebase App ID",
+        "redacted": "1:1036\u2026b980",
+        "source": "resources.arsc"
+      }
+    ]
+  },
+  "note": "RAW keys kept only in drive_ingest/raw; never push to GitHub"
+}

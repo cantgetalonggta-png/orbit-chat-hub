@@ -1,0 +1,173 @@
+{
+  "ts": "2026-11-17T09:05:15Z",
+  "primary_session": "211e2cba-1b23-5ce8-945a-d5e158b037a2",
+  "apk": {
+    "package": "ai.x.grok",
+    "version_name": "1.2.57-release.01",
+    "version_code": "11257201",
+    "source": "manifest.json + grok1/2/4 smali zips"
+  },
+  "CreateTokenRequest_fields": [
+    "conversation_id",
+    "agent_name",
+    "session_payload",
+    "request_agent_dispatch",
+    "livekit_url",
+    "params"
+  ],
+  "live_session_triggers": [
+    "CreateTokenRequest.request_agent_dispatch = true",
+    "LivekitAgentDispatch.CreateAgentDispatchRequest",
+    "RoomInteractor connect \u2192 JobAssignment",
+    "GrokVoiceService / GrokVoiceInteractionSessionService foreground",
+    "AgentSandboxClient gRPC (not_sandbox path)"
+  ],
+  "background_agent": [
+    "WorkerMessage / JobAssignment (LivekitAgent)",
+    "AgentSandboxClient / GrpcAgentSandboxClient",
+    "CreateAgentRequest (agentName, secrets, cpuReq, regions, replicas)"
+  ],
+  "background_synchronization": [
+    "RoomInteractor.UpdateSession",
+    "MicWatchdog + NetworkStallException recovery loops",
+    "Legacy Li/h SharedFlow + Li/s mutex (DataGateway)",
+    "DEP-04 SYNC-BUS operator heartbeat aggregation"
+  ],
+  "RoomInteractor_exceptions": [
+    "ConnectionFailed",
+    "UnexpectedDisconnect",
+    "EnableCamera",
+    "EnableMic",
+    "AgentQuitUnexpectedly",
+    "VoiceLimit",
+    "UpdateSession",
+    "Unexpected"
+  ],
+  "voice_stack": [
+    "ai.x.grok.voice.internal.livekit.RoomInteractor",
+    "GrokVoiceService",
+    "GrokRecognitionService",
+    "websocket capture/playback",
+    "VoiceToolRouter"
+  ],
+  "hub_routes_new": [
+    "/livekit/voice/map",
+    "/sandbox/agent/sim",
+    "/agents/registry"
+  ],
+  "stress_loop2": {
+    "cases": [
+      {
+        "path": "/health",
+        "method": "GET",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/auth/config",
+        "method": "GET",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/session",
+        "method": "GET",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/session/cookie",
+        "method": "GET",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/gateway/headers",
+        "method": "GET",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/livekit/token/dry-run",
+        "method": "GET",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/create_session/sim",
+        "method": "GET",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/livekit/agent/sim",
+        "method": "GET",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/livekit/dispatch/sim",
+        "method": "GET",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/stress/ping?n=5",
+        "method": "GET",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/app/",
+        "method": "GET",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/debug/state",
+        "method": "GET",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/debug/session_root",
+        "method": "GET",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/auth/token empty",
+        "status": 400,
+        "ok": true
+      },
+      {
+        "path": "/session/cookie empty",
+        "status": 400,
+        "ok": true
+      },
+      {
+        "path": "/create_session/sim POST",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/livekit/token dry",
+        "status": 200,
+        "ok": true
+      },
+      {
+        "path": "/session badjson",
+        "status": 200,
+        "ok": true
+      }
+    ],
+    "parallel_128": {
+      "ok": 128,
+      "fail": 0,
+      "seconds": 1.273
+    },
+    "ts": 1794906251.943244
+  },
+  "selective_extract": "/workspace/work/extracted_v1257",
+  "secrets_policy": "Mod-keys raw stays in drive_ingest/raw only; corpus has REDACTED summary only"
+}

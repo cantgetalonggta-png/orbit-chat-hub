@@ -1,0 +1,16 @@
+{
+  "loop": 2,
+  "hub": "http://127.0.0.1:8787",
+  "hub_ok": true,
+  "routes_count": 22,
+  "stress": "128/128 parallel + all failure injections OK",
+  "ingest": {
+    "drive_raw": "/workspace/artifacts/project/drive_ingest/raw",
+    "v1257_selective": "/workspace/work/extracted_v1257",
+    "blueprints": "/workspace/artifacts/project/corpus/BLUEPRINTS"
+  },
+  "github": "https://github.com/cantgetalonggta-png/orbit-chat-hub",
+  "vercel": "403 create project (platform limit remains)",
+  "secrets": "mod-keys NOT published",
+  "awaiting": null
+}
