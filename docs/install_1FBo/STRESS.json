@@ -1,0 +1,93 @@
+{
+  "loop": "INSTALL_1FBo",
+  "cases": [
+    {
+      "p": "/health",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/skills/registry",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/plugins/list",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/extract/1p6x",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/auth/config",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/session",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/livekit/token/dry-run",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/livekit/agent/sim",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/api/grpc_catalog",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/agents/registry",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/create_session/sim",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/debug/state",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/stress/ping?n=3",
+      "st": 200,
+      "ok": true
+    },
+    {
+      "p": "/app/",
+      "st": 200,
+      "ok": true
+    }
+  ],
+  "fails": [],
+  "injection": [
+    {
+      "name": "POST /auth/token empty",
+      "st": 400,
+      "ok": true
+    },
+    {
+      "name": "POST /session/cookie empty",
+      "st": 400,
+      "ok": true
+    }
+  ],
+  "parallel_250": {
+    "ok": 250,
+    "fail": 0,
+    "s": 1.51
+  }
+}

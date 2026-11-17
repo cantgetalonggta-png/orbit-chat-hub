@@ -145,3 +145,6 @@ document.getElementById('btnSandbox')?.addEventListener('click', loadSandbox);
 
 async function loadGrpc(){ const r=await api('GET','/api/grpc_catalog'); show('#grpcOut', r.json); }
 document.getElementById('btnGrpc')?.addEventListener('click', loadGrpc);
+
+async function loadSkills(){ const r=await api('/skills/registry'); document.getElementById('skills-out').textContent=JSON.stringify(r,null,2); }
+async function loadPlugins(){ const r=await api('/plugins/list'); document.getElementById('skills-out').textContent=JSON.stringify(r,null,2); }

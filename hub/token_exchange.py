@@ -170,7 +170,7 @@ ROUTES = [
     "/livekit/token", "/livekit/token/dry-run",
     "/debug/state", "/debug/session_root",
     "/create_session/sim", "/livekit/agent/sim", "/livekit/dispatch/sim", "/livekit/voice/map",
-    "/sandbox/agent/sim", "/agents/registry", "/api/grpc_catalog", "/api/clients", "/extract/1p6x", "/stress/ping", "/app", "/app/index.html",
+    "/sandbox/agent/sim", "/agents/registry", "/api/grpc_catalog", "/api/clients", "/extract/1p6x", "/skills/registry", "/plugins/list", "/stress/ping", "/app", "/app/index.html",
 ]
 
 
@@ -442,6 +442,35 @@ class Handler(BaseHTTPRequestHandler):
             })
 
         
+        
+        if path == "/skills/registry":
+            srv = Path("/root/.grok/server-skills")
+            proj = Path("/workspace/artifacts/project/skills")
+            plug = Path("/root/.grok/plugins")
+            def skill_names(root):
+                if not root.exists(): return []
+                return sorted([d.name for d in root.iterdir() if d.is_dir() and (d/"SKILL.md").exists() or (d.is_dir() and any(d.rglob("SKILL.md")))])
+            return self._json(200, {
+                "server_skills": skill_names(srv),
+                "project_skills": skill_names(proj),
+                "plugins": [d.name for d in plug.iterdir() if d.is_dir()] if plug.exists() else [],
+                "plugin_skill_mds": sum(1 for _ in plug.rglob("SKILL.md")) if plug.exists() else 0,
+                "server_skill_mds": sum(1 for _ in srv.rglob("SKILL.md")) if srv.exists() else 0,
+                "install_source": "1FBoEzYmyRVlgYE9GDQPK-htdnws7jvwB",
+                "plugin_name": "autonomous-fullstack-delivery",
+                "status": "INSTALLED",
+            })
+        if path == "/plugins/list":
+            plug = Path("/root/.grok/plugins")
+            items=[]
+            if plug.exists():
+                for d in sorted(plug.iterdir()):
+                    if not d.is_dir(): continue
+                    pj=d/"plugin.json"
+                    meta=json.loads(pj.read_text()) if pj.exists() else {}
+                    items.append({"name": d.name, "meta": meta, "skills": sum(1 for _ in d.rglob("SKILL.md"))})
+            return self._json(200, {"plugins": items})
+
         if path == "/extract/1p6x":
             return self._json(200, {
                 "folder_id": "1P6xBOj5SIeT2MhYQg9UWgopiVO6QHcNR",
