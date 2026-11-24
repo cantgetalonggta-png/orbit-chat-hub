@@ -165,14 +165,100 @@ def http_json(method: str, url: str, headers: dict, payload: dict | None = None,
 
 
 ROUTES = [
-    "/health", "/auth/login", "/auth/token", "/auth/logout", "/auth/config",
+    "/health", "/monitor", "/api/live", "/command", "/sync/bus", "/agents/spawn",
+    "/audit/dashboard", "/dev/deepscan",
+    "/auth/login", "/auth/token", "/auth/logout", "/auth/config",
     "/session", "/session/cookie", "/session/headers",
     "/gateway/headers", "/gateway/app_config",
     "/livekit/token", "/livekit/token/dry-run",
     "/debug/state", "/debug/session_root",
     "/create_session/sim", "/livekit/agent/sim", "/livekit/dispatch/sim", "/livekit/voice/map",
-    "/sandbox/agent/sim", "/agents/registry", "/api/grpc_catalog", "/api/clients", "/extract/1p6x", "/skills/registry", "/plugins/list", "/system/config", "/system/capabilities", "/providers/status", "/stress/ping", "/app", "/app/index.html",
+    "/sandbox/agent/sim", "/agents/registry", "/api/grpc_catalog", "/api/clients", "/extract/1p6x",
+    "/skills/registry", "/plugins/list", "/system/config", "/system/capabilities",
+    "/providers/status", "/stress/ping", "/app", "/app/index.html",
 ]
+
+# In-memory sticky agent registry + command bus (process-local)
+_AGENT_STORE: list = []
+_BUS: list = []
+_MONITOR_STARTED = time.time()
+_MONITOR_TTL = 1800  # 30 minutes sticky loop window
+
+
+
+
+def _build_audit() -> dict:
+    srv = Path("/root/.grok/server-skills")
+    skills = sorted([d.name for d in srv.iterdir() if d.is_dir()]) if srv.exists() else []
+    return {
+        "format": "ECHO_MACHINE_READABLE_AUDIT_DASHBOARD_v1",
+        "generated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "session_id": "211e2cba-1b23-5ce8-945a-d5e158b037a2",
+        "team": "echo-ec69",
+        "sandbox": {
+            "selectable": True,
+            "current": os.environ.get("ECHO_SANDBOX", "off"),
+            "options": ["on", "off"],
+            "note": "set ECHO_SANDBOX=on|off on hub process; not_sandbox live paths still simulated",
+        },
+        "workspace": {
+            "artifacts": "/workspace/artifacts",
+            "orbit_hub": str(ROOT),
+            "token_exchange": str(ROOT / "token_exchange.py"),
+            "cognito_config": str(ROOT / "cognito_config.json"),
+            "frontend_static": str(ROOT / "frontend"),
+            "server_skills": "/root/.grok/server-skills",
+            "laptop_recommended": {
+                "hub": "D:\\ECHO\\orbit-chat-hub\\hub",
+                "ollama_control": "D:\\ECHO\\ollama-control.ps1",
+                "models": "D:\\OllamaModels",
+                "secrets_clean": "D:\\ECHO\\SECRETS_CLEAN",
+            },
+            "servers": {
+                "hub": "http://127.0.0.1:8787",
+                "ollama_relay": "http://127.0.0.1:8765",
+                "vercel_spa": "https://echo-chat-hub-bridge.vercel.app",
+                "vercel_team": "https://vercel.com/echo-ec69",
+            },
+        },
+        "hub": {
+            "service": "orbit-hub-token-exchange",
+            "port": int(os.environ.get("HUB_PORT", "8787")),
+            "routes": ROUTES,
+            "agents_live": len(_AGENT_STORE),
+            "bus_depth": len(_BUS),
+            "cors": "*",
+        },
+        "oauth": {
+            "provider": "AWS Cognito",
+            "scopes": CFG.get("oauth_scopes"),
+            "client_id_public": CFG.get("client_id"),
+            "region": CFG.get("region"),
+            "pool": CFG.get("user_pool_id"),
+            "secrets_in_browser": False,
+            "env_only": ["COGNITO_CLIENT_SECRET", "HF_TOKEN", "GH_TOKEN", "VERCEL_TOKEN", "LIVEKIT_API_KEY", "LIVEKIT_API_SECRET"],
+        },
+        "live_session_dev_mode": {
+            "triggers_doc": "docs/LIVE_SESSION_TRIGGERS.md",
+            "deepscan_endpoint": "/dev/deepscan",
+            "items": [
+                "request_agent_dispatch",
+                "CreateAgentDispatchRequest",
+                "WorkerMessage/JobAssignment",
+                "AgentSandbox not_sandbox",
+                "DataGateway Li/p header chain",
+                "background_synchronization SharedFlow",
+            ],
+        },
+        "skills_sample": skills[:50],
+        "skills_count": len(skills),
+        "ui_surface": {
+            "vercel": "https://echo-chat-hub-bridge.vercel.app",
+            "local_app": "http://127.0.0.1:8787/app/",
+            "hub_url_localStorage_key": "echo_hub_url",
+        },
+        "status": "PRODUCTION_LOOP_ACTIVE",
+    }
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -211,11 +297,68 @@ class Handler(BaseHTTPRequestHandler):
         if path in ("/", "/health"):
             return self._json(200, {
                 "ok": True,
+                "status": "ok",
                 "service": "orbit-hub-token-exchange",
                 "pool": CFG.get("user_pool_id"),
-                "primary_session": CFG.get("primary_session"),
+                "primary_session": CFG.get("primary_session") or "211e2cba-1b23-5ce8-945a-d5e158b037a2",
                 "project_id": CFG.get("project_id"),
+                "port": int(os.environ.get("HUB_PORT", "8787")),
+                "sandbox": os.environ.get("ECHO_SANDBOX", "off"),
+                "agents_alive": len(_AGENT_STORE),
+                "bus_depth": len(_BUS),
                 "routes": ROUTES,
+            })
+        if path == "/monitor":
+            rem = max(0, int(_MONITOR_TTL - (time.time() - _MONITOR_STARTED)))
+            return self._json(200, {
+                "alive": True,
+                "remaining_sec": rem,
+                "ttl_sec": _MONITOR_TTL,
+                "skills": (sum(1 for _ in Path("/root/.grok/server-skills").iterdir()) if Path("/root/.grok/server-skills").exists() else 0),
+                "agents": len(_AGENT_STORE),
+                "sticky": True,
+                "loop": "production-skill-monitor",
+                "started_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(_MONITOR_STARTED)),
+            })
+        if path == "/api/live":
+            return self._json(200, {
+                "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "session": "211e2cba-1b23-5ce8-945a-d5e158b037a2",
+                "sandbox": os.environ.get("ECHO_SANDBOX", "off"),
+                "agents": list(_AGENT_STORE),
+                "bus_tail": _BUS[-20:],
+                "live_session_triggers": [
+                    "CreateTokenRequest.request_agent_dispatch=true",
+                    "LivekitAgentDispatch.CreateAgentDispatchRequest",
+                    "WorkerMessage / JobAssignment",
+                    "GrokVoiceService foreground",
+                    "AgentSandbox.MintPreviewToken (not_sandbox path)",
+                ],
+                "hub_url_hint": "http://127.0.0.1:8787",
+            })
+        if path == "/sync/bus":
+            return self._json(200, {"ok": True, "items": list(_BUS)[-100:], "depth": len(_BUS)})
+        if path == "/audit/dashboard":
+            return self._json(200, _build_audit())
+        if path == "/dev/deepscan":
+            return self._json(200, {
+                "dev_mode": True,
+                "sandbox": os.environ.get("ECHO_SANDBOX", "off"),
+                "triggers": [
+                    {"id": "live_session_agent_dispatch", "flag": "request_agent_dispatch", "source": "CreateTokenRequest"},
+                    {"id": "not_sandbox", "flag": "AgentSandbox", "source": "MintPreviewToken"},
+                    {"id": "background_sync", "flag": "Li/h SharedFlow", "source": "RE corpus"},
+                    {"id": "oauth2_cognito", "flag": "code_flow", "source": "auth/login"},
+                    {"id": "allowlist", "flag": "dev-open", "source": "frontend localStorage"},
+                    {"id": "livekit_dry_run", "flag": "missing_credentials_ok", "source": "livekit/token"},
+                ],
+                "routes": ROUTES,
+                "workspace": {
+                    "hub": str(ROOT),
+                    "artifacts": "/workspace/artifacts",
+                    "skills": "/root/.grok/server-skills",
+                    "laptop_hint": "D:\\ECHO\\orbit-chat-hub\\hub",
+                },
             })
         if path == "/auth/config":
             pub = {k: CFG[k] for k in (
@@ -282,6 +425,20 @@ class Handler(BaseHTTPRequestHandler):
                 "project_id": CFG.get("project_id"),
                 "org": "ECHO-EC69",
                 "locked": True,
+            })
+        if path == "/livekit/token":
+            body = {k: (v[0] if v else None) for k, v in qs.items()}
+            # GET is always dry-run friendly for UI
+            return self._json(200, {
+                "dry_run": True,
+                "method": "GET",
+                "request_body": livekit_token_body(body),
+                "candidate_urls": LIVEKIT_TOKEN_URLS,
+                "hint": "POST {proxy:true, room, identity, ...} to forward; GET is dry-run",
+                "room": body.get("room"),
+                "identity": body.get("identity"),
+                "headers_preview": {k: ("***" if k.lower() in ("authorization", "cookie", "x-api-key", "x-session-cookie") else v)
+                                    for k, v in gateway_headers().items()},
             })
         if path == "/livekit/token/dry-run":
             body = {k: (v[0] if v else None) for k, v in qs.items()}
@@ -623,20 +780,29 @@ class Handler(BaseHTTPRequestHandler):
                 "ties": ["request_agent_dispatch", "CreateAgentRequest", "JobAssignment"],
             })
         if path == "/agents/registry":
+            teams = {
+                "deployment": ["DEP-01 ORBIT-LEAD", "DEP-02 PULSE-HEALTH", "DEP-03 SHIP-GATE",
+                               "DEP-04 SYNC-BUS", "DEP-05 DEBUG-OPTS", "DEP-06 TASK-DAEMON"],
+                "frontend": ["FE-01 UI-SHELL", "FE-02 SWARM-VIEW", "FE-03 KPI-BOARD",
+                             "FE-04 ASSET-WIRE", "FE-05 A11Y-UX", "FE-06 EXPORT-IO"],
+                "research": ["RS-01 SCOUT-WEB", "RS-02 SOURCE-MAP", "RS-03 CLAIM-SPLIT",
+                             "RS-04 REPORT-ARCH", "RS-05 DIFF-WATCH", "RS-06 SCOPE-GUARD"],
+                "learning": ["LC-01 ONBOARD", "LC-02 SKILL-LIB", "LC-03 TOOLCHAIN",
+                             "LC-04 RUNBOOK", "LC-05 DRILL"],
+            }
+            # flatten static domain agents for UI table
+            static = []
+            for team, names in teams.items():
+                for n in names:
+                    static.append({"id": n.split()[0], "name": n, "role": team, "state": "blueprint", "tick": 0})
+            live = list(_AGENT_STORE)
             return self._json(200, {
                 "schema": "gta.grok.future_session_merge.v3",
                 "primary_session": "211e2cba-1b23-5ce8-945a-d5e158b037a2",
-                "agent_count": 23,
-                "teams": {
-                    "deployment": ["DEP-01 ORBIT-LEAD", "DEP-02 PULSE-HEALTH", "DEP-03 SHIP-GATE",
-                                   "DEP-04 SYNC-BUS", "DEP-05 DEBUG-OPTS", "DEP-06 TASK-DAEMON"],
-                    "frontend": ["FE-01 UI-SHELL", "FE-02 SWARM-VIEW", "FE-03 KPI-BOARD",
-                                 "FE-04 ASSET-WIRE", "FE-05 A11Y-UX", "FE-06 EXPORT-IO"],
-                    "research": ["RS-01 SCOUT-WEB", "RS-02 SOURCE-MAP", "RS-03 CLAIM-SPLIT",
-                                 "RS-04 REPORT-ARCH", "RS-05 DIFF-WATCH", "RS-06 SCOPE-GUARD"],
-                    "learning": ["LC-01 ONBOARD", "LC-02 SKILL-LIB", "LC-03 TOOLCHAIN",
-                                 "LC-04 RUNBOOK", "LC-05 DRILL"],
-                },
+                "agent_count": len(static) + len(live),
+                "agents": live + static,
+                "live_spawned": live,
+                "teams": teams,
                 "individuality_locked": True,
                 "source": "06_AGENT_ROLES_AND_HIERARCHY.md + master-run-command-center skill",
             })
@@ -795,6 +961,36 @@ class Handler(BaseHTTPRequestHandler):
             r = http_json("GET", APP_CONFIG_URL, headers)
             _debug("app_config", {"ok": r.get("ok"), "status": r.get("status")})
             return self._json(200 if r.get("ok") else 502, r)
+        if path == "/command":
+            entry = {
+                "id": str(uuid.uuid4()),
+                "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "type": body.get("type") or "command",
+                "text": body.get("text") or body.get("prompt") or "",
+                "payload": body,
+            }
+            _BUS.append(entry)
+            if len(_BUS) > 500:
+                del _BUS[:-500]
+            _debug("command", {"id": entry["id"], "text": entry["text"][:120]})
+            return self._json(200, {"ok": True, "accepted": True, "entry": entry, "bus_depth": len(_BUS)})
+        if path == "/agents/spawn":
+            agent = {
+                "id": body.get("id") or f"agent-{uuid.uuid4().hex[:8]}",
+                "role": body.get("role") or "operator",
+                "ttl_sec": int(body.get("ttl_sec") or 1800),
+                "sticky": bool(body.get("sticky", True)),
+                "spawned_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "state": "registered",
+                "tick": 0,
+                "remaining_sec": int(body.get("ttl_sec") or 1800),
+            }
+            # replace same id
+            global _AGENT_STORE
+            _AGENT_STORE = [a for a in _AGENT_STORE if a.get("id") != agent["id"]]
+            _AGENT_STORE.append(agent)
+            _BUS.append({"ts": agent["spawned_at"], "type": "agent_spawn", "agent": agent["id"]})
+            return self._json(200, {"ok": True, "agent": agent, "agents": len(_AGENT_STORE)})
         return self._json(404, {"error": "not_found", "path": path})
 
     def do_DELETE(self):

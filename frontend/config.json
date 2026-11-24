@@ -1,19 +1,10 @@
 {
-  "user_pool_id": "us-east-1_yr5vuS7Kz",
-  "client_id": "1t94d90dg0lc6uiemlukj98p5u",
-  "region": "us-east-1",
-  "domain_url": "https://orbit-echo-ec69-1yr5vus7kz.auth.us-east-1.amazoncognito.com",
-  "auth_url": "https://orbit-echo-ec69-1yr5vus7kz.auth.us-east-1.amazoncognito.com/oauth2/authorize",
-  "token_url": "https://orbit-echo-ec69-1yr5vus7kz.auth.us-east-1.amazoncognito.com/oauth2/token",
-  "jwks_url": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_yr5vuS7Kz/.well-known/jwks.json",
-  "oauth_scopes": [
-    "email",
-    "openid",
-    "phone",
-    "profile"
+  "default_hub": "http://127.0.0.1:8787",
+  "localStorage_key": "echo_hub_url",
+  "sandbox_options": [
+    "on",
+    "off"
   ],
-  "hub_default": "http://127.0.0.1:8787",
-  "primary_session": "211e2cba-1b23-5ce8-945a-d5e158b037a2",
-  "project_id": "a71d7fc2-5a87-4705-ad2d-411c9c2d70b9",
-  "org": "ECHO-EC69"
+  "session_id": "211e2cba-1b23-5ce8-945a-d5e158b037a2",
+  "team": "echo-ec69"
 }

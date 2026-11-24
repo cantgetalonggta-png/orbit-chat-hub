@@ -1,0 +1,10 @@
+{
+  "default_hub": "http://127.0.0.1:8787",
+  "localStorage_key": "echo_hub_url",
+  "sandbox_options": [
+    "on",
+    "off"
+  ],
+  "session_id": "211e2cba-1b23-5ce8-945a-d5e158b037a2",
+  "team": "echo-ec69"
+}

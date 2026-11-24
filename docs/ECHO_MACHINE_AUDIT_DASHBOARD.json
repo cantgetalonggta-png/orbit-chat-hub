@@ -1,0 +1,104 @@
+{
+  "format": "ECHO_MACHINE_READABLE_AUDIT_DASHBOARD_v1",
+  "generated_at": "2026-11-24T23:41:16Z",
+  "run": "build-continue-5run-pipeline",
+  "session_id": "211e2cba-1b23-5ce8-945a-d5e158b037a2",
+  "team": "echo-ec69",
+  "sandbox": {
+    "selectable": true,
+    "current": "off",
+    "options": [
+      "on",
+      "off"
+    ]
+  },
+  "workspace": {
+    "artifacts": "/workspace/artifacts",
+    "orbit_chat_hub": "/workspace/artifacts/orbit-chat-hub",
+    "hub_py": "/workspace/artifacts/orbit-chat-hub/hub/token_exchange.py",
+    "frontend": "/workspace/artifacts/orbit-chat-hub/frontend",
+    "deploy_pkg": "/workspace/artifacts/deploy-echo-chat-hub-bridge",
+    "catalog": "/workspace/artifacts/catalog",
+    "skills_vault": "/workspace/artifacts/skills_vault",
+    "dashboard_html": "/workspace/artifacts/dashboard",
+    "laptop": {
+      "hub": "D:\\ECHO\\orbit-chat-hub\\hub",
+      "ollama_control": "D:\\ECHO\\ollama-control.ps1",
+      "models": "D:\\OllamaModels",
+      "echo_root": "D:\\ECHO"
+    }
+  },
+  "servers": {
+    "hub_local": "http://127.0.0.1:8787",
+    "hub_app": "http://127.0.0.1:8787/app/",
+    "ollama_relay": "http://127.0.0.1:8765",
+    "vercel_spa": "https://echo-chat-hub-bridge.vercel.app",
+    "vercel_team": "https://vercel.com/echo-ec69",
+    "github_orbit": "https://github.com/cantgetalonggta-png/orbit-chat-hub"
+  },
+  "api_surface_hub": {
+    "GET": [
+      "/health",
+      "/monitor",
+      "/api/live",
+      "/sync/bus",
+      "/audit/dashboard",
+      "/dev/deepscan",
+      "/auth/config",
+      "/auth/login",
+      "/agents/registry",
+      "/skills/registry",
+      "/livekit/token",
+      "/livekit/token/dry-run",
+      "/providers/status",
+      "/system/capabilities",
+      "/stress/ping"
+    ],
+    "POST": [
+      "/command",
+      "/agents/spawn",
+      "/auth/token",
+      "/session/cookie",
+      "/livekit/token",
+      "/create_session/sim"
+    ]
+  },
+  "oauth": {
+    "cognito": true,
+    "secrets_browser": false,
+    "env": [
+      "COGNITO_CLIENT_SECRET",
+      "HF_TOKEN",
+      "GH_TOKEN",
+      "VERCEL_TOKEN",
+      "LIVEKIT_API_KEY",
+      "LIVEKIT_API_SECRET"
+    ]
+  },
+  "live_session_dev_mode_items": [
+    "request_agent_dispatch",
+    "CreateAgentDispatchRequest",
+    "WorkerMessage/JobAssignment",
+    "AgentSandbox not_sandbox",
+    "DataGateway Li/p",
+    "background_synchronization",
+    "OAuth2 Cognito code flow",
+    "allowlist dev-open",
+    "LiveKit dry_run"
+  ],
+  "ui_views": [
+    "dash",
+    "agents",
+    "cmd",
+    "auth",
+    "livekit",
+    "telemetry",
+    "audit",
+    "dev",
+    "skills",
+    "deploy",
+    "laptop",
+    "hubcfg"
+  ],
+  "status": "FRONTEND_HARDENED_HUB_ROUTES_PATCHED_AUDIT_EMITTED"
+}

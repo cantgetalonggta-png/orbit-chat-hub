@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ECHO Chat Hub / Bridge — Control Plane</title>
+<meta name="description" content="ECHO multi-agent Chat Hub control plane: agents, OAuth scaffold, allowlist, LiveKit, telemetry, deploy, audit"/>
+<style>
+:root{--bg:#05080f;--panel:#0d1420;--panel2:#121b2b;--line:#1c2a40;--a:#00e5ff;--b:#7c5cff;--ok:#00ff9a;--warn:#ffc14d;--bad:#ff4d6d;--mut:#8494ad;--tx:#e9eef8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(1000px 500px at 0% 0%,#0d1a30 0%,var(--bg) 50%);color:var(--tx);min-height:100vh}
+header{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--line);background:rgba(8,12,20,.92);backdrop-filter:blur(8px);position:sticky;top:0;z-index:20}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 0 16px rgba(0,229,255,.35)}
+h1{font-size:.95rem;letter-spacing:.06em;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.badge{font-size:.68rem;padding:3px 10px;border-radius:999px;border:1px solid var(--line)}
+.badge.live{border-color:var(--ok);color:var(--ok)}
+.badge.down{border-color:var(--bad);color:var(--bad)}
+.shell{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 56px)}
+@media(max-width:860px){.shell{grid-template-columns:1fr}}
+aside{border-right:1px solid var(--line);padding:12px;background:rgba(8,12,20,.6)}
+aside .navbtn{display:block;width:100%;text-align:left;background:transparent;border:1px solid transparent;color:var(--mut);padding:10px 12px;margin:0 0 6px;border-radius:8px;cursor:pointer;font:inherit;font-size:.78rem}
+aside .navbtn:hover,aside .navbtn.active{border-color:var(--line);color:var(--a);background:rgba(0,229,255,.06)}
+main{padding:16px 18px 40px;max-width:1100px}
+.hidden{display:none!important}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+@media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.stat .n{font-size:1.5rem;font-weight:700;color:var(--ok)}
+.stat .l{font-size:.68rem;color:var(--mut);text-transform:uppercase;letter-spacing:.07em;margin-top:4px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:12px}
+.card h2{font-size:.72rem;color:var(--a);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+.row{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid rgba(28,42,64,.85);font-size:.78rem}
+.row:last-child{border-bottom:0}
+.ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}.mut{color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:.72rem}
+th,td{padding:7px 6px;border-bottom:1px solid rgba(28,42,64,.8);text-align:left;vertical-align:top}
+th{color:var(--mut);font-size:.65rem;text-transform:uppercase}
+input,textarea,select{width:100%;background:#080e18;border:1px solid var(--line);color:var(--tx);padding:9px 10px;border-radius:8px;font:inherit;font-size:.8rem;margin:6px 0}
+.btn{background:transparent;border:1px solid var(--a);color:var(--a);padding:8px 12px;border-radius:8px;cursor:pointer;font:inherit;font-size:.75rem;margin:4px 6px 4px 0}
+.btn:hover{background:rgba(0,229,255,.08)}
+.btn.pri{background:linear-gradient(90deg,rgba(0,229,255,.15),rgba(124,92,255,.15))}
+.btn.danger{border-color:var(--bad);color:var(--bad)}
+.log{background:#060a12;border:1px solid var(--line);border-radius:10px;padding:10px;font-family:ui-monospace,monospace;font-size:.68rem;max-height:280px;overflow:auto;white-space:pre-wrap;word-break:break-all}
+.step{display:inline-block;padding:4px 8px;margin:2px;border-radius:6px;border:1px solid var(--line);font-size:.65rem;color:var(--mut)}
+.step.on{border-color:var(--ok);color:var(--ok)}
+.step.run{border-color:var(--a);color:var(--a);box-shadow:0 0 8px rgba(0,229,255,.25)}
+#toast{display:none;position:fixed;bottom:16px;right:16px;background:#0d1420;border:1px solid var(--a);padding:10px 14px;border-radius:10px;font-size:.8rem;z-index:50}
+footer{padding:12px 18px;color:var(--mut);font-size:.65rem;border-top:1px solid var(--line)}
+code{color:var(--a)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo"></div><div><h1>ECHO CHAT HUB / BRIDGE</h1>
+  <div class="mut" style="font-size:.65rem">Control plane · agents · OAuth · allowlist · LiveKit · audit · deploy</div></div></div>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    <span id="hubBadge" class="badge down">hub…</span>
+    <span id="loopBadge" class="badge down">loop…</span>
+    <span id="sandboxBadge" class="badge">sandbox: ?</span>
+    <nav>
+      <a href="#dash">Dash</a>
+      <a href="#agents">Agents</a>
+      <a href="#auth">Auth</a>
+      <a href="#livekit">LiveKit</a>
+      <a href="#audit">Audit</a>
+      <a href="#deploy">Deploy</a>
+    </nav>
+  </div>
+</header>
+<div class="shell">
+<aside>
+  <button class="navbtn active" data-v="dash">Dashboard</button>
+  <button class="navbtn" data-v="agents">Agents</button>
+  <button class="navbtn" data-v="cmd">Command bus</button>
+  <button class="navbtn" data-v="auth">OAuth / Allowlist</button>
+  <button class="navbtn" data-v="livekit">LiveKit</button>
+  <button class="navbtn" data-v="telemetry">Telemetry</button>
+  <button class="navbtn" data-v="audit">Audit JSON</button>
+  <button class="navbtn" data-v="dev">DEV DeepScan</button>
+  <button class="navbtn" data-v="skills">Skills</button>
+  <button class="navbtn" data-v="deploy">Deploy</button>
+  <button class="navbtn" data-v="laptop">Laptop relay</button>
+  <button class="navbtn" data-v="hubcfg">Hub URL</button>
+</aside>
+<main>
+  <section id="view-dash">
+    <div class="card"><h2>Nine-step runtime</h2><div id="steps"></div></div>
+    <div id="stats" class="grid"></div>
+    <div class="card"><h2>System</h2><div id="sys"></div></div>
+    <div class="card"><h2>Quick actions</h2>
+      <button class="btn pri" id="btnRefresh">Refresh all</button>
+      <button class="btn" id="btnHealth">GET /health</button>
+      <button class="btn" id="btnMonitor">GET /monitor</button>
+      <button class="btn" id="btnRegistry">GET /agents/registry</button>
+      <button class="btn" id="btnLive">GET /api/live</button>
+      <button class="btn" id="btnAudit">GET /audit/dashboard</button>
+    </div>
+  </section>
+
+  <section id="view-agents" class="hidden">
+    <div class="card"><h2>Background agents (30m domains + live spawn)</h2>
+      <table><thead><tr><th>ID</th><th>Task / Role</th><th>Tick</th><th>Remaining</th><th>State</th></tr></thead>
+      <tbody id="atbody"></tbody></table>
+    </div>
+    <div class="card"><h2>Spawn agent · POST /agents/spawn</h2>
+      <input id="spawnId" placeholder="agent id (optional)"/>
+      <input id="spawnRole" placeholder="role e.g. operator / ch-08-deploy"/>
+      <button class="btn pri" id="btnSpawn">Spawn sticky 30m</button>
+      <div class="log" id="spawnLog"></div>
+    </div>
+  </section>
+
+  <section id="view-cmd" class="hidden">
+    <div class="card"><h2>Command bus · POST /command</h2>
+      <textarea id="cmdIn" rows="4" placeholder='{"type":"command","text":"status"} or free text'></textarea>
+      <button class="btn pri" id="cmdSend">Send</button>
+      <button class="btn" id="cmdClear">Clear log</button>
+      <button class="btn" id="btnBus">GET /sync/bus</button>
+      <div class="log" id="cmdLog"></div>
+      <div class="log" id="busLog" style="margin-top:8px"></div>
+    </div>
+  </section>
+
+  <section id="view-auth" class="hidden">
+    <div class="card"><h2>OAuth2 / providers (scaffold — secrets via env only)</h2>
+      <div class="row"><span>OAuth2 code flow</span><span class="mut">authorize → token → refresh</span></div>
+      <div class="row"><span>Cognito</span><span class="mut">COGNITO_USER_POOL_ID / CLIENT_ID / REGION / COGNITO_CLIENT_SECRET</span></div>
+      <div class="row"><span>Hugging Face</span><span class="mut">HF_TOKEN</span></div>
+      <div class="row"><span>GitHub</span><span class="mut">GH_TOKEN</span></div>
+      <div class="row"><span>Vercel</span><span class="mut">VERCEL_TOKEN</span></div>
+      <div class="row"><span>Allowlist mode</span><span class="mut">dev-open (no secrets in browser)</span></div>
+    </div>
+    <div class="card"><h2>Allowlist editor (client-side preview)</h2>
+      <textarea id="allowList" rows="5">127.0.0.1
+localhost
+::1
+operator@local</textarea>
+      <button class="btn" id="btnAllowSave">Save preview (localStorage)</button>
+      <pre class="log" id="authCfg">loading /auth/config…</pre>
+    </div>
+  </section>
+
+  <section id="view-livekit" class="hidden">
+    <div class="card"><h2>LiveKit token path · GET /livekit/token</h2>
+      <input id="lkRoom" value="echo-room"/>
+      <input id="lkIdent" value="operator"/>
+      <button class="btn pri" id="btnLk">Request token / dry-run</button>
+      <p class="mut" style="font-size:.72rem;margin:8px 0">Real JWT only when LIVEKIT_API_KEY + LIVEKIT_API_SECRET (or proxy session) are set on hub. Otherwise dry_run / missing_credentials.</p>
+      <pre class="log" id="lkOut"></pre>
+    </div>
+  </section>
+
+  <section id="view-telemetry" class="hidden">
+    <div class="card"><h2>Telemetry buffer · GET /api/live</h2>
+      <button class="btn" id="btnTel">Refresh telemetry</button>
+      <pre class="log" id="telOut"></pre>
+    </div>
+  </section>
+
+  <section id="view-audit" class="hidden">
+    <div class="card"><h2>Machine-readable audit dashboard · GET /audit/dashboard</h2>
+      <button class="btn pri" id="btnAudit2">Fetch audit JSON</button>
+      <button class="btn" id="btnCopyAudit">Copy JSON</button>
+      <pre class="log" id="auditOut" style="max-height:480px"></pre>
+    </div>
+  </section>
+
+  <section id="view-dev" class="hidden">
+    <div class="card"><h2>DEV-MODE DeepScan · GET /dev/deepscan</h2>
+      <div class="row"><span>Sandbox selectable</span><span class="mut">on | off (ECHO_SANDBOX env on hub)</span></div>
+      <button class="btn pri" id="btnDeep">Run DeepScan</button>
+      <pre class="log" id="deepOut" style="max-height:420px"></pre>
+    </div>
+  </section>
+
+  <section id="view-skills" class="hidden">
+    <div class="card"><h2>Skill stack (selected)</h2>
+      <ul id="skillList" style="font-size:.75rem;line-height:1.6;list-style:none"></ul>
+    </div>
+  </section>
+
+  <section id="view-deploy" class="hidden">
+    <div class="card"><h2>Deploy surfaces</h2>
+      <div class="row"><span>GitHub</span><span><code>cantgetalonggta-png/orbit-chat-hub</code> / <code>echo-chat-hub-bridge</code></span></div>
+      <div class="row"><span>Hub</span><span><code>:8787</code> token_exchange.py</span></div>
+      <div class="row"><span>Vercel SPA</span><span><code>https://echo-chat-hub-bridge.vercel.app</code></span></div>
+      <div class="row"><span>Team</span><span><code>https://vercel.com/echo-ec69</code></span></div>
+    </div>
+    <div class="card"><h2>Deploy checklist</h2><div id="deployCheck"></div></div>
+  </section>
+
+  <section id="view-laptop" class="hidden">
+    <div class="card"><h2>Laptop orchestrator (PowerShell relay)</h2>
+      <p class="mut" style="font-size:.75rem;margin-bottom:8px">Grok cannot open a remote shell on your PC. Copy-paste these.</p>
+      <pre class="log" id="laptopCmds"># Start Hub
+cd D:\ECHO\orbit-chat-hub\hub
+python token_exchange.py
+
+# Health
+Invoke-RestMethod http://127.0.0.1:8787/health
+
+# Ollama orchestrator REST
+powershell -NoProfile -File D:\ECHO\ollama-control.ps1 -Action server -Port 8765
+
+# One-shot auto route
+powershell -NoProfile -File D:\ECHO\ollama-control.ps1 -Action auto -Prompt "status check"
+
+# Point Vercel SPA at hub (Chrome console)
+localStorage.setItem('echo_hub_url', 'http://127.0.0.1:8787')
+location.reload()</pre>
+      <button class="btn" id="btnCopyLaptop">Copy block</button>
+    </div>
+  </section>
+
+  <section id="view-hubcfg" class="hidden">
+    <div class="card"><h2>Hub URL (localStorage.echo_hub_url)</h2>
+      <input id="hubUrlIn" placeholder="http://127.0.0.1:8787 or https://YOUR-TUNNEL"/>
+      <button class="btn pri" id="btnHubSave">Save + reload</button>
+      <button class="btn" id="btnHubLocal">Use 127.0.0.1:8787</button>
+      <p class="mut" style="font-size:.72rem;margin-top:8px">Current: <code id="hubUrlCur"></code></p>
+    </div>
+  </section>
+</main>
+</div>
+<footer>ECHO Chat Hub / Bridge · no secrets in frontend · allowlist is preview-only · LIVEKIT dry_run until keys · session 211e2cba…</footer>
+<div id="toast"></div>
+<script>
+(function(){
+  const HUB = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
+    ? (localStorage.getItem('echo_hub_url') || (location.port==='8787' ? location.origin : 'http://127.0.0.1:8787'))
+    : (localStorage.getItem('echo_hub_url') || 'http://127.0.0.1:8787');
+  const STEPS = ['Discover','Research','Architecture','Providers','Frontend','Integrate','Test','Deploy','Skills'];
+  const SKILLS = [
+    'echo-ec69-1-core-identity-communication-style',
+    'echo-ec69-12-system-reconnaissance-valid-data-location',
+    'echo-ec69-13-signal-interaction-device-control-via-flipper-zero',
+    'echo-ec69-15-contextual-memory-session-continuity-management',
+    'echo-document-ingest-tooling-landscape',
+    'echo-document-ingest-model-selection',
+    'echo-chat-hub-bridge-architecture',
+    'echo-chat-hub-bridge-runtime',
+    'echo-auto-deploy-hub',
+    'echo-auto-deploy-cloud'
+  ];
+  const $ = (id)=>document.getElementById(id);
+  function toast(m){const t=$('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2200)}
+  async function jget(path){
+    try{
+      const r = await fetch(HUB+path, {mode:'cors'});
+      const t = await r.text();
+      let j; try{j=JSON.parse(t)}catch(e){j={raw:t}}
+      return {ok:r.ok, status:r.status, body:j, raw:t};
+    }catch(e){return {ok:false, status:0, body:{error:String(e)}, raw:String(e)}}
+  }
+  async function jpost(path, data){
+    try{
+      const r = await fetch(HUB+path, {method:'POST', mode:'cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)});
+      const t = await r.text();
+      let j; try{j=JSON.parse(t)}catch(e){j={raw:t}}
+      return {ok:r.ok, status:r.status, body:j, raw:t};
+    }catch(e){return {ok:false, status:0, body:{error:String(e)}, raw:String(e)}}
+  }
+  function setView(name){
+    document.querySelectorAll('[id^=view-]').forEach(el=>el.classList.add('hidden'));
+    const v = document.getElementById('view-'+name); if(v) v.classList.remove('hidden');
+    document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active', b.dataset.v===name));
+    location.hash = name;
+  }
+  document.querySelectorAll('.navbtn').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.v)));
+  if(location.hash) setView(location.hash.slice(1));
+
+  function renderSteps(activeIdx){
+    $('steps').innerHTML = STEPS.map((s,i)=>{
+      const cls = i < activeIdx ? 'step on' : (i===activeIdx ? 'step run' : 'step');
+      return '<span class="'+cls+'">'+(i+1)+' '+s+'</span>';
+    }).join('');
+  }
+  function renderSkills(){
+    $('skillList').innerHTML = SKILLS.map(s=>'<li><code>'+s+'</code></li>').join('');
+  }
+  function renderDeploy(){
+    $('deployCheck').innerHTML = [
+      ['Hub health', 'GET /health'],
+      ['Monitor sticky', 'GET /monitor'],
+      ['Agents registry', '10+ domain agents + spawn'],
+      ['Command bus', 'POST /command + GET /sync/bus'],
+      ['Audit JSON', 'GET /audit/dashboard'],
+      ['DeepScan DEV', 'GET /dev/deepscan'],
+      ['Frontend package', 'frontend + vercel.json'],
+      ['GitHub', 'orbit-chat-hub / echo-chat-hub-bridge'],
+      ['OAuth scaffold', 'env-only secrets'],
+      ['Allowlist', 'local preview + server guard'],
+      ['LiveKit', 'token path dry_run until keys'],
+      ['Laptop REST', 'D:\\\\ECHO ollama-control :8765']
+    ].map(r=>'<div class="row"><span>'+r[0]+'</span><span class="mut">'+r[1]+'</span></div>').join('');
+  }
+
+  async function refresh(){
+    const health = await jget('/health');
+    const mon = await jget('/monitor');
+    const reg = await jget('/agents/registry');
+    const live = await jget('/api/live');
+    const auth = await jget('/auth/config');
+
+    const hubOk = health.ok && health.body && (health.body.status==='ok' || health.body.ok===true);
+    $('hubBadge').textContent = hubOk ? 'hub live' : 'hub down';
+    $('hubBadge').className = 'badge '+(hubOk?'live':'down');
+
+    const monOk = mon.ok && mon.body && mon.body.alive;
+    $('loopBadge').textContent = monOk ? ('loop '+(mon.body.remaining_sec||'?')+'s') : 'loop ?';
+    $('loopBadge').className = 'badge '+(monOk?'live':'down');
+
+    const sb = (health.body && health.body.sandbox) || (live.body && live.body.sandbox) || '?';
+    $('sandboxBadge').textContent = 'sandbox: '+sb;
+
+    const agents = (reg.body && reg.body.agents) || (live.body && live.body.agents) || [];
+    const skills = (mon.body && mon.body.skills) || 0;
+    $('stats').innerHTML = [
+      ['Hub', hubOk?'OK':'DOWN', hubOk?'ok':'bad'],
+      ['Agents', agents.length, 'ok'],
+      ['Skills', skills, 'ok'],
+      ['Monitor rem', monOk?(mon.body.remaining_sec||0)+'s':'—', monOk?'ok':'warn']
+    ].map(x=>'<div class="stat"><div class="n '+x[2]+'">'+x[1]+'</div><div class="l">'+x[0]+'</div></div>').join('');
+
+    $('sys').innerHTML = [
+      ['Health', JSON.stringify(health.body).slice(0,180)],
+      ['Monitor', JSON.stringify(mon.body).slice(0,180)],
+      ['Hub URL', HUB],
+      ['TS', new Date().toISOString()]
+    ].map(r=>'<div class="row"><span>'+r[0]+'</span><span class="mut" style="max-width:70%;text-align:right;word-break:break-all">'+String(r[1])+'</span></div>').join('');
+
+    let idx = hubOk ? 7 : 2;
+    if (agents.length >= 10) idx = 8;
+    renderSteps(idx);
+
+    const tbody = $('atbody');
+    if (!agents.length) tbody.innerHTML = '<tr><td colspan="5" class="mut">No agents in registry — start hub on :8787</td></tr>';
+    else tbody.innerHTML = agents.slice(0,40).map(a=>{
+      const id=a.id||a.name||'?'; const role=a.role||a.task||a.name||'';
+      return '<tr><td><code>'+id+'</code></td><td>'+role+'</td><td>'+(a.tick||'—')+'</td><td>'+(a.remaining_sec!=null?a.remaining_sec:'—')+'</td><td class="ok">'+(a.state||'registered')+'</td></tr>';
+    }).join('');
+
+    $('authCfg').textContent = auth.raw || JSON.stringify(auth.body,null,2);
+    $('hubUrlCur').textContent = HUB;
+    $('hubUrlIn').value = HUB;
+  }
+
+  $('btnRefresh').onclick = ()=>{refresh(); toast('refreshed')};
+  $('btnHealth').onclick = async()=>{const r=await jget('/health'); toast(r.raw.slice(0,80)); refresh()};
+  $('btnMonitor').onclick = async()=>{const r=await jget('/monitor'); toast('monitor '+r.status); refresh()};
+  $('btnRegistry').onclick = async()=>{const r=await jget('/agents/registry'); toast('agents '+((r.body.agents||[]).length)); refresh()};
+  $('btnLive').onclick = async()=>{const r=await jget('/api/live'); toast('live '+r.status); refresh()};
+  function showAudit(r){ $('auditOut').textContent = r.raw || JSON.stringify(r.body,null,2); }
+  $('btnAudit').onclick = async()=>{const r=await jget('/audit/dashboard'); showAudit(r); setView('audit'); toast('audit '+r.status)};
+  $('btnAudit2').onclick = async()=>{const r=await jget('/audit/dashboard'); showAudit(r); toast('audit '+r.status)};
+  $('btnCopyAudit').onclick = async()=>{try{await navigator.clipboard.writeText($('auditOut').textContent); toast('copied')}catch(e){toast('copy failed')}};
+  $('btnDeep').onclick = async()=>{const r=await jget('/dev/deepscan'); $('deepOut').textContent=r.raw||JSON.stringify(r.body,null,2); toast('deepscan '+r.status)};
+
+  $('cmdSend').onclick = async()=>{
+    let payload; const raw=$('cmdIn').value.trim();
+    try{payload=JSON.parse(raw)}catch(e){payload={type:'command', text:raw}}
+    const r=await jpost('/command', payload);
+    $('cmdLog').textContent += new Date().toISOString()+' '+r.status+' '+r.raw+'\n';
+  };
+  $('cmdClear').onclick = ()=>$('cmdLog').textContent='';
+  $('btnBus').onclick = async()=>{const r=await jget('/sync/bus'); $('busLog').textContent=r.raw};
+
+  $('btnSpawn').onclick = async()=>{
+    const id=$('spawnId').value.trim()||('ad-hoc-'+Date.now());
+    const role=$('spawnRole').value.trim()||'operator';
+    const r=await jpost('/agents/spawn',{id, role, ttl_sec:1800, sticky:true});
+    $('spawnLog').textContent = r.raw;
+    refresh();
+  };
+
+  $('btnLk').onclick = async()=>{
+    const room=encodeURIComponent($('lkRoom').value||'echo-room');
+    const identity=encodeURIComponent($('lkIdent').value||'operator');
+    const r=await jget('/livekit/token?room='+room+'&identity='+identity);
+    $('lkOut').textContent = r.raw;
+  };
+
+  $('btnTel').onclick = async()=>{
+    const r=await jget('/api/live');
+    $('telOut').textContent = r.raw;
+  };
+
+  $('btnAllowSave').onclick = ()=>{
+    localStorage.setItem('echo_allowlist', $('allowList').value);
+    toast('allowlist preview saved locally');
+  };
+  const saved = localStorage.getItem('echo_allowlist'); if(saved) $('allowList').value=saved;
+
+  $('btnCopyLaptop').onclick = async()=>{
+    try{await navigator.clipboard.writeText($('laptopCmds').textContent); toast('copied')}catch(e){toast('copy failed')}
+  };
+
+  $('btnHubSave').onclick = ()=>{
+    const u=$('hubUrlIn').value.trim();
+    if(!u) return toast('empty url');
+    localStorage.setItem('echo_hub_url', u);
+    location.reload();
+  };
+  $('btnHubLocal').onclick = ()=>{
+    localStorage.setItem('echo_hub_url', 'http://127.0.0.1:8787');
+    location.reload();
+  };
+
+  renderSkills(); renderDeploy(); renderSteps(0); refresh();
+  setInterval(refresh, 15000);
+})();
+</script>
+</body>
+</html>

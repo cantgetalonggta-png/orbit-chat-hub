@@ -1,0 +1,54 @@
+{
+  "ts": "2026-11-24T23:41:53Z",
+  "run": 2,
+  "hub": "http://127.0.0.1:8787",
+  "sandbox": "off",
+  "results": {
+    "/health": {
+      "http": 200,
+      "ok": true
+    },
+    "/monitor": {
+      "http": 200,
+      "ok": true
+    },
+    "/api/live": {
+      "http": 200,
+      "ok": true
+    },
+    "/sync/bus": {
+      "http": 200,
+      "ok": true
+    },
+    "/audit/dashboard": {
+      "http": 200,
+      "ok": true
+    },
+    "/dev/deepscan": {
+      "http": 200,
+      "ok": true
+    },
+    "/agents/registry": {
+      "http": 200,
+      "ok": true
+    },
+    "/auth/config": {
+      "http": 200,
+      "ok": true
+    },
+    "/livekit/token?room=r&identity=i": {
+      "http": 200,
+      "ok": true
+    },
+    "/stress/ping?n=10": {
+      "http": 200,
+      "ok": true
+    },
+    "POST /command": 200,
+    "POST /agents/spawn": 200,
+    "GET /nope": "HTTP Error 404: Not Found"
+  },
+  "audit_endpoint": "/audit/dashboard",
+  "spa": "https://echo-chat-hub-bridge.vercel.app",
+  "verdict": "PASS"
+}
